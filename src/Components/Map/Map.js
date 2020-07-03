@@ -53,7 +53,7 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<Map center={[40.416775, -3.703790]} zoom={25} maxZoom={19} onDblClick={this.generateMarker} ref={this.instantiateMap.bind(this)}>
+			<Map center={[40.416775, -3.703790]} zoom={15} maxZoom={19} onDblClick={this.generateMarker} ref={this.instantiateMap.bind(this)}>
 				<TileLayer
 					url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"
 					attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
