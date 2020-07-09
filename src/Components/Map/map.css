@@ -4,4 +4,9 @@
 }
 .leaflet-routing-container.leaflet-bar.leaflet-control{
   /* display: none */
+  background-color: whitesmoke;
+}
+
+.leaflet-routing-container.leaflet-bar.leaflet-control:nth-of-type(2) {
+  display: none;
 }

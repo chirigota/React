@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import "./Map.css";
-import Route from "../Route.js";
+import Route from "../route.js";
 
 export default class App extends Component {
 
@@ -17,7 +17,7 @@ export default class App extends Component {
 				{ "position": [40.416895, -3.7043942], "popup": "Fuente izquierda" },
 				{ "position": [40.454676, -3.70232878], "popup": "Silvaga rules" }
 			],
-			"pointA": {"x": 44.419992, "y": 3.6909257},
+			"pointA": {"x": 40.419992, "y": -3.6909257},
 			"pointB": {"x": 40.4199823, "y": -3.6887104}
 		};
 		this.generateMarker = this.generateMarker.bind(this);
@@ -53,9 +53,9 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<Map center={[40.416775, -3.703790]} zoom={25} maxZoom={19} onDblClick={this.generateMarker} ref={this.instantiateMap.bind(this)}>
+			<Map center={[40.416775, -3.703790]} zoom={15} maxZoom={19} onDblClick={this.generateMarker} ref={this.instantiateMap.bind(this)}>
 				<TileLayer
-					url='https://{s}.tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=wmpmiE7gyJPKgHi1lGV8y5uY3jF26Xno7lfGHFLVsRXUkR68hm701leqj8Nr4eb4'
+					url='https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token=wmpmiE7gyJPKgHi1lGV8y5uY3jF26Xno7lfGHFLVsRXUkR68hm701leqj8Nr4eb4'
 					attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				/>
 				{this.printMarker()}
@@ -64,8 +64,7 @@ export default class App extends Component {
 		);
 	}
 }
-// wmpmiE7gyJPKgHi1lGV8y5uY3jF26Xno7lfGHFLVsRXUkR68hm701leqj8Nr4eb4
-// var Jawg_Sunny = L.tileLayer('https://{s}.tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+// var Jawg_Terrain = L.tileLayer('https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
 // 	attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 // 	minZoom: 0,
 // 	maxZoom: 22,

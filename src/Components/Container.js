@@ -3,18 +3,21 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
+// import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import Map from './Map/Map'
+// import MoreIcon from '@material-ui/icons/MoreVert';
+import TuneIcon from '@material-ui/icons/Tune';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import Map from './Map/Map';
+import Footer from './Footer';
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -166,7 +169,7 @@ export default function PrimarySearchAppBar() {
 		<div className={classes.grow}>
 			<AppBar position="static">
 				<Toolbar>
-					<IconButton
+					{/* <IconButton
 						edge="start"
 						className={classes.menuButton}
 						color="inherit"
@@ -176,7 +179,7 @@ export default function PrimarySearchAppBar() {
 					</IconButton>
 					<Typography className={classes.title} variant="h6" noWrap>
 						MAPATOR+
-          </Typography>
+          </Typography> */}
 					<div className={classes.search}>
 						<div className={classes.searchIcon}>
 							<SearchIcon />
@@ -192,7 +195,7 @@ export default function PrimarySearchAppBar() {
 					</div>
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
-						<IconButton aria-label="show 4 new mails" color="inherit">
+						{/* <IconButton aria-label="show 4 new mails" color="inherit">
 							<Badge badgeContent={4} color="secondary">
 								<MailIcon />
 							</Badge>
@@ -201,8 +204,9 @@ export default function PrimarySearchAppBar() {
 							<Badge badgeContent={17} color="secondary">
 								<NotificationsIcon />
 							</Badge>
-						</IconButton>
-						<IconButton
+						</IconButton> */}
+						<TuneIcon />
+						{/* <IconButton
 							edge="end"
 							aria-label="account of current user"
 							aria-controls={menuId}
@@ -211,10 +215,11 @@ export default function PrimarySearchAppBar() {
 							color="inherit"
 						>
 							<AccountCircle />
-						</IconButton>
+						</IconButton> */}
+
 					</div>
 					<div className={classes.sectionMobile}>
-						<IconButton
+						{/* <IconButton
 							aria-label="show more"
 							aria-controls={mobileMenuId}
 							aria-haspopup="true"
@@ -222,13 +227,15 @@ export default function PrimarySearchAppBar() {
 							color="inherit"
 						>
 							<MoreIcon />
-						</IconButton>
+						</IconButton> */}
+						<TuneIcon />
 					</div>
 				</Toolbar>
 			</AppBar>
 			{renderMobileMenu}
 			{renderMenu}
 			<Map />
+			<Footer />
 		</div>
 	);
 }
