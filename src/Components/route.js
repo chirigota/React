@@ -19,15 +19,18 @@ class Routing extends MapLayer {
 			"lineOptions": {
 				"styles": [
 					{
-						"color": "purple",
+						"color": "blue",
 						"opacity": 0.6,
 						"weight": 4
 					}
 				]
 			},
+			"routeWhileDragging":true,
 			"addWaypoints": false,
-			"draggableWaypoints": false,
-			"fitSelectedRoutes": false,
+			//drag
+			"draggableWaypoints": true,
+			//put on screen the route
+			"fitSelectedRoutes": true,
 			"showAlternatives": false
 		}).addTo(map.leafletElement);
 		return leafletElement.getPlan();

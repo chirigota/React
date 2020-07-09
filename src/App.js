@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import Map from "./Components/Map/Map.js";
+
+import Container from "./Components/Container"
 
 export default class App extends Component {
 	render() {
 		return (
 			<div>
-				<Map />
+				<Container />
 			</div>
 		);
 	}
