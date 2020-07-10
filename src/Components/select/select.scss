@@ -1,0 +1,98 @@
+$Charcoal: #333333;
+$White: #ffffff;
+$Babu: #00A699;
+$Orange: #FD7A53;
+$Yellow: #FFE74C;
+$Black: #000000;
+$Gray: #828282;
+
+label {
+    padding-left: 5px;
+}
+
+.input {
+    position: relative;
+    display: flex;
+    margin: 5px;
+    flex-direction: column;
+    input {
+        border: 1px solid $Gray;
+        border-radius: 7px;
+        width: 244px;
+        height: 40px;
+        padding: 0px 10px;
+        &:focus {
+            border: 1px solid $Orange;
+            outline: none;
+        }
+    }
+
+
+}
+
+.select {
+    .fas {
+        position: absolute;
+        font-size: 30px;
+        top: 42px;
+        transform: translate(-50%, -50%);
+        right: 0px;
+        color: $Gray;
+        cursor: pointer;
+    }
+    input {
+        width: 224px;
+        padding-right: 30px;
+    }
+    &.focus input {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+    .scroll {
+        border: 1px solid $Orange;
+        border-top: 0px;
+        max-height: 7.5em;
+        width: 264px;
+        position: absolute;
+        top: 60px;
+        z-index: 1;
+        display: block;
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px;
+        overflow: auto;
+        div {
+            background-color: white;
+            height: 2.5em;
+            position: relative;
+            .optionDistinguisher {
+                display: block;
+                height: 5px;
+                background-color: $Babu;
+            }
+            .optionSelected {
+                display: inline-block;
+                position: absolute;
+                height: 35px;
+                width: 5px;
+                
+            }
+            &:hover .optionSelected, &:focus .optionSelected {
+                background-color: $Orange;
+            }
+            p {
+                margin: 0px;
+                padding-left: 10px;
+                padding-right: 10px;
+                position: absolute;
+                top: 50%;
+                max-width: 222px;
+                max-height: 38px;
+                overflow: hidden;
+                transform: translateY(-50%);
+            }
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
