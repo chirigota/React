@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import categoryContext from "../../Contexts/categoryContext.js";
 import "./Map.css";
 import Route from "../route.js";
 
@@ -8,7 +9,7 @@ export default class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			"markers": [
+			"markers": [/*
 				{ "position": [40.419992, -3.6909257], "popup": "Puerta de alcalá" },
 				{ "position": [40.41695, -3.7037602], "popup": "Fuente derecha" },
 				{ "position": [40.416895, -3.7043942], "popup": "Fuente izquierda" },
@@ -16,9 +17,8 @@ export default class App extends Component {
 				{ "position": [40.41695, -3.7037602], "popup": "Fuente derecha" },
 				{ "position": [40.416895, -3.7043942], "popup": "Fuente izquierda" },
 				{ "position": [40.454676, -3.70232878], "popup": "Silvaga rules" }
-			],
-			"pointA": {"x": 40.419992, "y": -3.6909257},
-			"pointB": {"x": 40.4199823, "y": -3.6887104}
+			*/],
+			"pointA": {"x": 40.419992, "y": -3.6909257}
 		};
 		this.generateMarker = this.generateMarker.bind(this);
 	}
@@ -59,7 +59,15 @@ export default class App extends Component {
 					attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				/>
 				{this.printMarker()}
-				{this.state.map && <Route map={this.state.map} pointA={this.state.pointA} pointB={this.state.pointB}/>}
+				<categoryContext.Consumer>
+					{(value) => {
+						return (
+						<div>
+							{this.state.map && value.pointB && <Route map={this.state.map} pointA={this.state.pointA} pointB={value.pointB}/>}
+						</div>
+						)
+					}}
+				</categoryContext.Consumer>
 			</Map>
 		);
 	}

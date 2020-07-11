@@ -10,7 +10,8 @@ export default class App extends Component {
 		super(props);
 		this.state = {
 			"selected": undefined,
-			"redirectTo": undefined
+			"redirectTo": undefined,
+			"pointB": undefined
 		}
 	}
 
@@ -22,8 +23,13 @@ export default class App extends Component {
 	render() {
 		return (
 			<div>
-				Selected: {this.state.selected}
-				<context.Provider value={{"selected": this.state.selected, "selectCategory": (selected, redirectTo = undefined) => {this.setState({...this.state, selected, redirectTo})}}}>
+				<p>
+					PointB: {this.state.pointB && this.state.pointB.x} {this.state.pointB && this.state.pointB.y}
+				</p>
+				<p>
+					Selected: {this.state.selected}	
+				</p>
+				<context.Provider value={{pointB: this.state.pointB, "selected": this.state.selected, "selectCategory": (selected, redirectTo = undefined, pointB = []) => {this.setState({...this.state, selected, redirectTo, pointB})}}}>
 					<Router>
 						{this.state.redirectTo && this.redirect()}
 						<Switch>

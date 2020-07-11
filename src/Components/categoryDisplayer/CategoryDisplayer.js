@@ -9,7 +9,7 @@ class CategoryDisplayer extends Component {
                 {(value) => {
                     console.log(value);
                     return (
-                        <div className="categoryDisplayer" onClick={() => value.selectCategory(this.props.id, "/map")}>
+                        <div className="categoryDisplayer" onClick={() => { navigator.geolocation.getCurrentPosition((pos) => {console.log(pos); value.selectCategory(this.props.id, "/map", {"x": pos.coords.latitude, "y": pos.coords.longitude})})}}>
                             <img alt={this.props.alt} src={this.props.src}></img>
                             <p>{this.props.name}</p>
                         </div>
