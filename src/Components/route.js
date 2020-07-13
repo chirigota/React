@@ -1,14 +1,19 @@
-import { MapLayer, withLeaflet } from "react-leaflet";
+import { Component } from "react";
+import { withLeaflet } from "react-leaflet";
 import L from "leaflet";
 import "leaflet-routing-machine";
 import "lrm-graphhopper";
 
-class Routing extends MapLayer {
+class Routing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			vehicle: [{"vehicle": "car", "color": "purple"}, {"vehicle": "bike", "color": "green"}, {"vehicle": "foot", "color": "blue"}, {"vehicle": "hike", "color": "darkblue"}, {"vehicle": "mtb", "color": "darkgreen"}, {"vehicle": "racingbike", "color": "black"}, {"vehicle": "scooter", "color": "blue"}, {"vehicle": "truck", "color": "blue"}, {"vehicle": "small_truck", "color": "blue"}]
 		}
+	}
+
+	componentDidMount() {
+		this.createLeafletElement();
 	}
 
 	createLeafletElement() {
@@ -21,12 +26,10 @@ class Routing extends MapLayer {
 				L.latLng(this.props.pointA.x, this.props.pointA.y),
 				L.latLng(this.props.pointB.x, this.props.pointB.y),
 			],
-			"itineraryFormatter": new L.Routing.Itinerary({
-				"hide": true
-			}),
 			"router": new L.Routing.graphHopper(apiKey, {
 				"urlParameters": {
-					"vehicle": vehicle[selectedVehicle].vehicle
+					"vehicle": vehicle[selectedVehicle].vehicle,
+					"locale": "es"
 				}
 			}),
 			"lineOptions": {
@@ -46,7 +49,12 @@ class Routing extends MapLayer {
 			"fitSelectedRoutes": true,
 			"showAlternatives": false
 		}).addTo(this.props.map.leafletElement);
-		return leafletElement.getPlan();
+		leafletElement.hide();
+		leafletElement.on("routeselected", (e) => console.log(e.route.instructions));
+	}
+
+	render() {
+		return false
 	}
 }
 export default withLeaflet(Routing);

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Container from "./Components/Container";
-import {BrowserRouter as Router, Route, Switch, Browser, Redirect} from "react-router-dom"
-import PickLocations from "./Components/pickLocation/PickLocation.js";
+import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 import CategoryPicker from "./Components/categoryPicker/CategoryPicker.js";
-import context from "./Contexts/categoryContext.js";
+import { CategoryProvider } from "./Contexts/categoryContext.js";
 
 export default class App extends Component {
 	constructor(props) {
@@ -15,9 +14,10 @@ export default class App extends Component {
 		}
 	}
 
-	redirect(r) {
+	getRedirection() {
+		let redirectTo = this.state.redirectTo;
 		this.setState({...this.state, redirectTo: undefined })
-		return <Redirect to={this.state.redirectTo} />
+		return <Redirect to={redirectTo} />
 	}
 
 	render() {
@@ -29,15 +29,15 @@ export default class App extends Component {
 				<p>
 					Selected: {this.state.selected}	
 				</p>
-				<context.Provider value={{pointB: this.state.pointB, "selected": this.state.selected, "selectCategory": (selected, redirectTo = undefined, pointB = []) => {this.setState({...this.state, selected, redirectTo, pointB})}}}>
+				<CategoryProvider value={{"pointB": this.state.pointB, "selected": this.state.selected, "selectCategory": (selected, redirectTo = undefined, pointB = []) => {this.setState({...this.state, selected, redirectTo, pointB})}}}>
 					<Router>
-						{this.state.redirectTo && this.redirect()}
+						{this.state.redirectTo && this.getRedirection()}
 						<Switch>
 							<Route exact path="/" component={CategoryPicker} />
 							<Route exact path="/map" component={Container} />
 						</Switch>
 					</Router>
-				</context.Provider>
+				</CategoryProvider>
 
 				{/* <Container /> */}
 			</div>

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import "./categoryDisplayer.css";
-import context, { categoryConsumer } from "../../Contexts/categoryContext.js";
+import { CategoryConsumer } from "../../Contexts/categoryContext.js";
 
 class CategoryDisplayer extends Component {
     render() {
         return (
-            <context.Consumer>
+            <CategoryConsumer>
                 {(value) => {
                     console.log(value);
                     return (
@@ -15,7 +15,7 @@ class CategoryDisplayer extends Component {
                         </div>
                     )
                 }}
-            </context.Consumer>
+            </CategoryConsumer>
         )
     }
 }
