@@ -6,6 +6,8 @@ $Yellow: #FFE74C;
 $Black: #000000;
 $Gray: #828282;
 
+$Background: #E8F3F1;
+
 label {
     padding-left: 5px;
 }
@@ -15,18 +17,42 @@ label {
     display: flex;
     margin: 5px;
     flex-direction: column;
+    width: 327px;
+    left: 50%;
+    transform: translate(-50%, 0);
     input {
-        border: 1px solid $Gray;
-        border-radius: 7px;
-        width: 244px;
-        height: 40px;
-        padding: 0px 10px;
-        &:focus {
-            border: 1px solid $Orange;
-            outline: none;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        border: 0px;
+        background-color: $Background;
+        border-radius: 44px;
+        width: 226.09px;
+        height: 39px;
+        padding: 0px;
+        padding-left: 24px;
+        padding-right: 76.93px;
+
+        outline: none;
+    }
+    .searchIcon {
+        background: linear-gradient(270deg, #00B3BD -13.71%, #53C9B4 50%);
+        border-radius: 44px;
+        width: 66.91px;
+        height: 39px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 0px;
+        img {
+            fill: white;
+            width: 27.51px;
+            height: 26px;
         }
     }
-
 
 }
 
@@ -40,55 +66,53 @@ label {
         color: $Gray;
         cursor: pointer;
     }
-    input {
-        width: 224px;
-        padding-right: 30px;
-    }
-    &.focus input {
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-    }
     .scroll {
-        border: 1px solid $Orange;
         border-top: 0px;
-        max-height: 7.5em;
-        width: 264px;
+        max-height: 189px;
+        width: 327px;
         position: absolute;
-        top: 60px;
+        top: 48px;
         z-index: 1;
         display: block;
-        border-bottom-left-radius: 7px;
-        border-bottom-right-radius: 7px;
+        border-radius: 20px;
         overflow: auto;
+        background-color: $Background;
+        hr {
+            width: 222px;
+        }
         div {
-            background-color: white;
+            display: flex;
+            align-items: center;
+            background-color: $Background;
             height: 2.5em;
             position: relative;
-            .optionDistinguisher {
-                display: block;
-                height: 5px;
-                background-color: $Babu;
-            }
             .optionSelected {
                 display: inline-block;
                 position: absolute;
                 height: 35px;
                 width: 5px;
-                
             }
             &:hover .optionSelected, &:focus .optionSelected {
                 background-color: $Orange;
             }
+            div.img {
+                padding-left: 18px;
+                padding-right: 18px;
+                width: 24px;
+                height: 24px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
             p {
-                margin: 0px;
-                padding-left: 10px;
-                padding-right: 10px;
-                position: absolute;
-                top: 50%;
-                max-width: 222px;
-                max-height: 38px;
-                overflow: hidden;
-                transform: translateY(-50%);
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 16px;
+                text-align: center;
+
+                color: #272727;
             }
             &:hover {
                 cursor: pointer;

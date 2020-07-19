@@ -15,9 +15,11 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 // import MoreIcon from '@material-ui/icons/MoreVert';
 import TuneIcon from '@material-ui/icons/Tune';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
+// import BottomNavigation from '@material-ui/core/BottomNavigation';
 import Map from './Map/Map';
 import Footer from './Footer';
+import {CategoryConsumer} from "../Contexts/categoryContext.js";
+import { types as categories } from "../JSON/categories.json";
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -104,9 +106,9 @@ export default function PrimarySearchAppBar() {
 		handleMobileMenuClose();
 	};
 
-	const handleMobileMenuOpen = (event) => {
-		setMobileMoreAnchorEl(event.currentTarget);
-	};
+	// const handleMobileMenuOpen = (event) => {
+	// 	setMobileMoreAnchorEl(event.currentTarget);
+	// };
 
 	const menuId = 'primary-search-account-menu';
 	const renderMenu = (
@@ -167,6 +169,14 @@ export default function PrimarySearchAppBar() {
 
 	return (
 		<div className={classes.grow}>
+			<CategoryConsumer>
+				{(value) => 
+					<div>
+						<p>Selected: {value.selected !== undefined && categories.filter(el => el.id === parseInt(value.selected))[0].name}</p>
+						<button onClick = {() => value.redirectTo("/")}>Volver</button>
+					</div>
+				}
+			</CategoryConsumer>
 			<AppBar position="static">
 				<Toolbar>
 					{/* <IconButton

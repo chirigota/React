@@ -2,8 +2,10 @@ import React, {useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import "./select.scss";
 
-function handleFill(event, state, setState) {
-	setState({ ...state, "value": event.target.value });
+async function handleFill(event, state, setState) {
+	let value = event.target.value;
+	let data = await (await fetch(`http://localhost:3001/street/${value}`)).json()//.then(data => data.json()).then(data => setState({...state, data}));
+	setState({ ...state, value, data });
 }
 
 function handleArrow(state, setState, ref) {
@@ -21,24 +23,48 @@ function handleOption(state, setState, props, ref, value) {
 	}
 	if (props.selectOption)
 		props.selectOption(value);
-	setState({...state, "focused": false, "selectedValue": value, "value": value}, () => ref.input.focus());
+	setState({...state, "focused": false, "selectedValue": value, value});
 }
 
 function selectOption(e, state, setState, props, ref, value) {
 	if (e.key === " ") {
-		handleOption(state, setState, ref, value);
+		handleOption(state, setState, props, ref, value);
 	}
 
 }
 
-function changeFocus(state, setState, newState, ref) {
+async function changeFocus(state, setState, newState, ref) {
+	let data = state.data;
 	if (ref.changeFocus) {
 		clearTimeout(ref.changeFocus);
 		ref.changeFocus = undefined;
 	} else {
+		data = await (await fetch(`http://localhost:3001/street/${state.value}`)).json()//.then(data => data.json()).then(data => setState({ ...state, data }));
 		ref.input.select();
 	}
-	setState({ ...state, "focused": newState });
+	setState({ ...state, "focused": newState, data });
+}
+
+function printOptions(state, setState, props, ref) {
+	let options =  state.data && state.data.map((data, index) => {
+		return (
+			<div key={index + 1} onKeyUp={(e) => selectOption(e, state, setState, props, ref, data)} onClick={() => handleOption(state, setState, props, ref, data)} onFocus={() => changeFocus(state, setState, true, ref)} onBlur={() => ref.changeFocus = setTimeout(() => changeFocus(state, setState, false, ref), 100)} tabIndex={0} >
+				<div className="img">
+					<img src="/IMG/lupa.svg" alt="Imágen de una lupa"/>
+				</div>
+				<p>{data}</p>
+			</div>
+		);
+	});
+	if (options && options.length > 0)
+		options.unshift(<hr key={-1}/>)
+	options.unshift(<div key={0} onKeyUp={(e) => selectOption(e, state, setState, props, ref, "Tu ubicación")} onClick={() => handleOption(state, setState, props, ref, "Tu ubicación")} onFocus={() => changeFocus(state, setState, true, ref)} onBlur={() => ref.changeFocus = setTimeout(() => changeFocus(state, setState, false, ref), 100)} tabIndex={0} >
+		<div className="img">
+			<img src="/IMG/ubicacion.svg" alt="Imágen de una diana" />
+		</div>
+		<p>{"Tu ubicación"}</p>
+	</div>)
+	return options;
 }
 
 function Select(props) {
@@ -51,22 +77,15 @@ function Select(props) {
 	let idMultiplier = 99999;
 	let id = `Select${Math.floor(Math.random() * idMultiplier)}`;
 	let ref = {"global": undefined, "input": undefined, "arrow": undefined, "changeFocus": undefined};
-	let data = ["Opción 1", "Opción 2", "Opción 3", "Opción 4"];
 	return (
 		<div className={`input select ${state.focused && "focus"}`} role="listbox" ref={(el) => ref.global = el}>
 			<label htmlFor={id}>{props.label}</label>
-			<input onFocus={() => changeFocus(state, setState, true, ref)} onBlur={() => ref.changeFocus = setTimeout(() => changeFocus(state, setState, false, ref), 100 )} placeholder={props.placeholder || "Select..."} aria-required={props.required === true} ref={(el) => ref.input = el} id={id} value={state.value} onChange={(e) => handleFill(e, state, setState)}></input>
-			<i className={`fas ${state.focused ? "fa-caret-up" : "fa-caret-down"}`} ref={(el) => ref.arrow = el} onClick={() => handleArrow(state, setState, ref)}/>
+			<input type={props.type ? props.type : "text"}onFocus={() => changeFocus(state, setState, true, ref)} onBlur={() => ref.changeFocus = setTimeout(() => changeFocus(state, setState, false, ref), 100 )} placeholder={props.placeholder || "Select..."} aria-required={props.required === true} ref={(el) => ref.input = el} id={id} value={state.value} onChange={(e) => handleFill(e, state, setState)}></input>
+			<div className="searchIcon" ref={(el) => ref.arrow = el} onClick={() => handleArrow(state, setState, ref)}>
+				<img src="/IMG/lupaWhite.svg" alt="Imágen de una lupa" />
+			</div>
 			{state.focused && <section className="scroll">
-				{props.data.filter(data => data.toLowerCase().includes(state.value.toLowerCase())).map((data, index) => {
-					return (
-						<div key={index} onKeyUp={(e) => selectOption(e, state, setState, props, ref, data)} onClick={() => handleOption(state, setState, props,  ref, data)} onFocus={() => changeFocus(state, setState, true, ref)} onBlur={() => ref.changeFocus = setTimeout(() => changeFocus(state, setState, false, ref), 100 )} tabIndex={0} >
-							<div className="optionDistinguisher"></div>
-							<div className="optionSelected"></div>
-							<p>{data}</p>
-						</div>
-					);
-				})}
+				{printOptions(state, setState, props, ref)}
 			</section>}
 		</div>
 	);
@@ -75,8 +94,7 @@ function Select(props) {
 Select.propTypes = {
 	"required": PropTypes.bool,
 	"type": PropTypes.string,
-	"placeholder": PropTypes.string,
-	"label": PropTypes.string.isRequired
+	"placeholder": PropTypes.string
 };
 
 export default Select;

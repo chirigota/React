@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigation';
+// import BottomNavigation from '@material-ui/core/BottomNavigation';
+// import BottomNavigationAction from '@material-ui/core/BottomNavigation';
 // import RestoreIcon from '@material-ui/core';
 
 export class Footer extends Component {

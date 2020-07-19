@@ -1,0 +1,28 @@
+section.selectCategory .top {
+    justify-content: center;
+    display: flex;
+}
+
+section.selectCategory {
+    max-width: 500px;
+    margin: auto;
+}
+
+section.selectCategory h1 {
+    font-family: Monda;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+    width: 323px;
+    height: 64px;
+}
+
+section.selectCategory h2 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: left;
+}

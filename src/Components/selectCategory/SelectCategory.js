@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import CategoryDisplayer from "../categoryDisplayer/CategoryDisplayer.js";
-import "./categoryPicker.css";
+import CategoryDisplayer from "../categoryItem/CategoryItem.js";
+import "./SelectCategory.css";
 
-class CategoryPicker extends Component {
+class SelectCategory extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,13 +22,14 @@ class CategoryPicker extends Component {
         if (!this.state.pos)
             console.log(navigator.geolocation.getCurrentPosition((pos) => this.setState({ ...this.state, "pos": pos.timestamp }), (e) => this.setState({ ...this.state, pos: e.message })))
         return (
-            <section className="categoryPicker">
+            <section className="selectCategory">
                 Pos: {this.state.pos}
                 {this.printOptions()}
                 <p>Selected: {this.state.selected}</p>
+                
             </section>
         )
     }
 }
 
-export default CategoryPicker
+export default SelectCategory;

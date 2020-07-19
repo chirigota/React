@@ -1,0 +1,29 @@
+{
+    "types": [
+        {
+            "id": 0,
+            "name": "panadería",
+            "img": "IMG/panaderia.svg"
+        },
+        {
+            "id": 1,
+            "name": "alimentacion",
+            "img": "IMG/alimentacion.svg"
+        },
+        {
+            "id": 2,
+            "name": "ferreteria",
+            "img": "IMG/ferreteria.svg"
+        },
+        {
+            "id": 3,
+            "name": "libreria",
+            "img": "IMG/libreria.svg"
+        },
+        {
+            "id": 4,
+            "name": "floristeria",
+            "img": "IMG/floristeria.svg"
+        }
+    ]
+}

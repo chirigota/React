@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
+import { Map, TileLayer, Marker, Popup} from "react-leaflet";
 import {CategoryConsumer} from "../../Contexts/categoryContext.js";
 import "./Map.css";
 import Route from "../route.js";
@@ -19,7 +20,8 @@ export default class App extends Component {
 				{ "position": [40.454676, -3.70232878], "popup": "Silvaga rules" }
 			*/],
 			"pointA": {"x": 40.419992, "y": -3.6909257},
-			"routeRendered": false
+			"routeRendered": false,
+			"selected": 0
 		};
 		this.generateMarker = this.generateMarker.bind(this);
 	}
@@ -34,8 +36,17 @@ export default class App extends Component {
 	printMarker() {
 		return this.state.markers.map((el, id) => {
 			// console.log("printed", el);
+			let size = (id === this.state.selected ? 75 : 50);
 			return (
-				<Marker position={el.position} key={id} onContextMenu={() => this.removeMarker(id)}>
+				<Marker position={el.position} key={id} icon={L.icon({
+					"iconUrl": "IMG/iconG.png",
+					// "shadowUrl": "https://unpkg.com/leaflet@1.6.0/dist/images/marker-shadow.png",
+					iconSize: [size, size], // size of the icon
+					shadowSize: [50, 60], // size of the shadow
+					iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
+					shadowAnchor: [15, 60],  // the same for the shadow
+					popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+				})} onContextMenu={() => this.removeMarker(id)}>
 					<Popup>{el.popup}</Popup>
 				</Marker>
 			);

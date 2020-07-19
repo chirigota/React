@@ -39,10 +39,11 @@ class Routing extends Component {
 						"opacity": 0.6,
 						"weight": 4
 					}
-				]
+				],
+				"addWaypoints": false
 			},
 			"routeWhileDragging":true,
-			"addWaypoints": false,
+			"addWaypoints": true,
 			//drag
 			"draggableWaypoints": true,
 			//put on screen the route

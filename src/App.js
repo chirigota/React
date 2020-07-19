@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Container from "./Components/Container";
 import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
-import CategoryPicker from "./Components/categoryPicker/CategoryPicker.js";
+import CategoryPicker from "./Components/selectCategory/SelectCategory2.js";
 import { CategoryProvider } from "./Contexts/categoryContext.js";
 
 export default class App extends Component {
@@ -12,6 +12,12 @@ export default class App extends Component {
 			"redirectTo": undefined,
 			"pointB": undefined
 		}
+
+		this.redirectTo = this.redirectTo.bind(this);
+	}
+
+	redirectTo(redirectTo) {
+		this.setState({...this.state, redirectTo});
 	}
 
 	getRedirection() {
@@ -23,13 +29,7 @@ export default class App extends Component {
 	render() {
 		return (
 			<div>
-				<p>
-					PointB: {this.state.pointB && this.state.pointB.x} {this.state.pointB && this.state.pointB.y}
-				</p>
-				<p>
-					Selected: {this.state.selected}	
-				</p>
-				<CategoryProvider value={{"pointB": this.state.pointB, "selected": this.state.selected, "selectCategory": (selected, redirectTo = undefined, pointB = []) => {this.setState({...this.state, selected, redirectTo, pointB})}}}>
+				<CategoryProvider value={{"pointB": this.state.pointB, "selected": this.state.selected, "redirectTo": this.redirectTo,"selectCategory": (selected, redirectTo = undefined, pointB = []) => {this.setState({...this.state, selected, redirectTo, pointB})}}}>
 					<Router>
 						{this.state.redirectTo && this.getRedirection()}
 						<Switch>
