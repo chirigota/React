@@ -1,12 +1,14 @@
 .leaflet-container {
+position: absolute;
   width: 100%;
   height: 100vh;
+/* display: none; */
 }
 .leaflet-routing-container.leaflet-bar.leaflet-control{
-  /* display: none */
+  display: none ;
   background-color: whitesmoke;
 }
 
 .leaflet-routing-container.leaflet-bar.leaflet-control.leaflet-routing-container-hide {
   display: none;
-}
+} 

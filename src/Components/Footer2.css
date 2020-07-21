@@ -1,0 +1,8 @@
+
+.footer-container{
+	
+	/* margin-top: 138%; */
+	position: absolute;
+    bottom: -48px;
+    z-index: 9999
+}

@@ -1,0 +1,26 @@
+.recharts-cartesian-grid, .recharts-default-legend {
+	display:none
+}
+.recharts-cartesian-axis-ticks{
+transform: translate(0px, -3px);
+}
+.recharts-layer.recharts-cartesian-axis.recharts-xAxis.xAxis{
+margin-top: 20px;
+position: absolute;
+z-index: 99999999;
+top: 0px;
+transform: translate(0px, 10px);
+}
+ select{
+	background: transparent;
+    color:black;
+    outline: none;
+	border: none;
+	font-size: 100%;
+	}
+.recharts-wrapper{
+width:100%
+}
+.popularTiming{
+	font-size: 100%;
+}

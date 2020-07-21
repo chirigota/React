@@ -1,0 +1,44 @@
+/* margen entre 14 y 16 */
+
+.footer-container{
+	
+	/* margin-top: 138%; */
+	position: absolute;
+    bottom: -48px;
+    z-index: 9999
+}
+.slider{
+width: 197px;
+height: 177.72px;
+left: 46px;
+top: 479.25px;
+background: #FAFAFA;
+box-shadow: 0px 11px 15px rgba(0, 0, 0, 0.2), 0px 9px 46px rgba(0, 0, 0, 0.12), 0px 24px 38px rgba(0, 0, 0, 0.14);
+border-radius: 6px;
+margin: 14px;
+}
+h1{
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	    margin-left: 0.5em;
+}
+p{
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 12px;
+    /* margin-left: 0.5em; */
+}
+img{
+	width: 187px;
+    height: 86.29px;
+    padding: 2%;
+}

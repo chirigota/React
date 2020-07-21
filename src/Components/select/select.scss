@@ -8,11 +8,12 @@ $Gray: #828282;
 
 $Background: #E8F3F1;
 
-label {
-    padding-left: 5px;
-}
 
-.input {
+.customSelect {
+    label {
+        padding-left: 5px;
+    }
+    &.input {
     position: relative;
     display: flex;
     margin: 5px;
@@ -56,7 +57,6 @@ label {
 
 }
 
-.select {
     .fas {
         position: absolute;
         font-size: 30px;
@@ -105,6 +105,8 @@ label {
                 align-items: center;
             }
             p {
+                padding: 0px;
+                margin: 0px;
                 font-family: Roboto;
                 font-style: normal;
                 font-weight: 500;

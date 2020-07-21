@@ -1,0 +1,16 @@
+#logoContainer{
+	  background-color: #298178;
+    height: 15%;
+    margin-top: 0%;
+    width: 100%;
+	position: absolute;
+	border-bottom-left-radius: 1000%;
+	border-bottom-right-radius: 1000%;
+}
+#logo{
+    display: block;
+    margin-left: 26%;
+    margin-right: auto;
+    width: 64%;
+    margin-top: 4%;
+}

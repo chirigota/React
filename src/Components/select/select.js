@@ -78,7 +78,7 @@ function Select(props) {
 	let id = `Select${Math.floor(Math.random() * idMultiplier)}`;
 	let ref = {"global": undefined, "input": undefined, "arrow": undefined, "changeFocus": undefined};
 	return (
-		<div className={`input select ${state.focused && "focus"}`} role="listbox" ref={(el) => ref.global = el}>
+		<div className={`input customSelect ${state.focused && "focus"}`} role="listbox" ref={(el) => ref.global = el}>
 			<label htmlFor={id}>{props.label}</label>
 			<input type={props.type ? props.type : "text"}onFocus={() => changeFocus(state, setState, true, ref)} onBlur={() => ref.changeFocus = setTimeout(() => changeFocus(state, setState, false, ref), 100 )} placeholder={props.placeholder || "Select..."} aria-required={props.required === true} ref={(el) => ref.input = el} id={id} value={state.value} onChange={(e) => handleFill(e, state, setState)}></input>
 			<div className="searchIcon" ref={(el) => ref.arrow = el} onClick={() => handleArrow(state, setState, ref)}>

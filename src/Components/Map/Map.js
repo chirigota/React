@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import L from "leaflet";
-import { Map, TileLayer, Marker, Popup} from "react-leaflet";
+import { Map, TileLayer, Marker, Popup, ZoomControl} from "react-leaflet";
 import {CategoryConsumer} from "../../Contexts/categoryContext.js";
 import "./Map.css";
 import Route from "../route.js";
+
 
 export default class App extends Component {
 
@@ -65,11 +66,14 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<Map center={[40.416775, -3.703790]} zoom={15} maxZoom={19} onDblClick={this.generateMarker} ref={this.instantiateMap.bind(this)}>
+			// added zoomControl to remove inital zoom icons
+			<Map center={[40.416775, -3.703790]} zoom={15} maxZoom={19} zoomControl={false} onDblClick={this.generateMarker} ref={this.instantiateMap.bind(this)}>
 				<TileLayer
 					url='https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token=wmpmiE7gyJPKgHi1lGV8y5uY3jF26Xno7lfGHFLVsRXUkR68hm701leqj8Nr4eb4'
 					attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				/>
+				{/* added ZoomControl component to change zoom position  */}
+				<ZoomControl position='topright' />
 				{this.printMarker()}
 				<CategoryConsumer>
 					{(value) => {
@@ -81,27 +85,7 @@ export default class App extends Component {
 					}}
 				</CategoryConsumer>
 			</Map>
+			
 		);
 	}
 }
-// var Jawg_Terrain = L.tileLayer('https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
-// 	attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-// 	minZoom: 0,
-// 	maxZoom: 22,
-// 	subdomains: 'abcd',
-// 	accessToken: '<your accessToken>'
-// });
-
-// render() {
-// 	return (
-// 		<Map center={[40.416775, -3.703790]} zoom={25} maxZoom={19} onDblClick={this.generateMarker} ref={this.instantiateMap.bind(this)}>
-// 			<TileLayer
-// 				url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"
-// 				attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-// 			/>
-// 			{this.printMarker()}
-// 			{this.state.map && <Route map={this.state.map} pointA={this.state.pointA} pointB={this.state.pointB} />}
-// 		</Map>
-// 	);
-// }
-// }

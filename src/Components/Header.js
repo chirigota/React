@@ -1,6 +1,7 @@
 import React from 'react';
 import './Header.css';
-// import Map from "./Map/Map";
+import { Button } from 'antd';
+
 
 class Header extends React.Component {
 	constructor(props) {
@@ -16,8 +17,11 @@ class Header extends React.Component {
 	render() {
 		return (
 			<div className="header">
-				{/* <Map /> */}
-
+					<Button>
+					Atrás
+					</Button>
+					<Button> Panadería</Button>
+					<Button>Fav</Button>
 			</div>
 		);
 	}
