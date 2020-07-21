@@ -22,7 +22,8 @@ export default class App extends Component {
 		this.state = {
 			"selected": undefined,
 			"redirectTo": undefined,
-			"pointB": undefined
+			"pointB": undefined,
+			"coords": undefined
 		}
 
 		this.redirectTo = this.redirectTo.bind(this);
@@ -56,7 +57,7 @@ export default class App extends Component {
 						<Route exact path="/points">
 							<Points />
 						</Route>
-						<CategoryProvider value={{ "pointB": this.state.pointB, "selected": this.state.selected, "redirectTo": this.redirectTo, "selectCategory": (selected, redirectTo = undefined, pointB = []) => { this.setState({ ...this.state, selected, redirectTo, pointB }) } }}>
+						<CategoryProvider value={{ "pointB": this.state.pointB, "selected": this.state.selected, "redirectTo": this.redirectTo, "coords": this.state.coords, "selectStreet": (coords) => {this.setState({...this.state, coords}); console.log(coords)},"selectCategory": (selected, redirectTo = undefined, pointB = []) => { this.setState({ ...this.state, selected, redirectTo, pointB }) } }}>
 							<Route exact path="/store">
 								<Store />
 							</Route>
