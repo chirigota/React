@@ -1,11 +1,16 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./select.scss";
 
 async function handleFill(event, state, setState, props) {
 	let value = event.target.value;
-	let data = await (await fetch(`http://localhost:3001/street/${value === props.defaultValue ? "" : value}`)).json()//.then(data => data.json()).then(data => setState({...state, data}));
-	setState({ ...state, value, data });
+	try {
+		let data = await fetch(`http://localhost:3001/street/${value === props.defaultValue ? "" : value}`);
+		data = await data.json()//.then(data => data.json()).then(data => setState({...state, data}));
+		setState({ ...state, value, data });
+	} catch (e) {
+		setState({ ...state, value });
+	}
 }
 
 function handleArrow(state, setState, ref) {
@@ -24,7 +29,7 @@ function handleOption(state, setState, props, ref, value) {
 		ref.changeFocus = undefined;
 	}
 	props.selectOption(value);
-	setState({...state, "focused": false, "selectedValue": value, value});
+	setState({ ...state, "focused": false, "selectedValue": value, value });
 }
 
 function selectOption(e, state, setState, props, ref, value) {
@@ -47,18 +52,18 @@ async function changeFocus(state, setState, newState, ref, props) {
 }
 
 function printOptions(state, setState, props, ref) {
-	let options =  state.data && state.data.map((data, index) => {
+	let options = state.data && state.data.map((data, index) => {
 		return (
 			<div key={index + 1} onKeyUp={(e) => selectOption(e, state, setState, props, ref, data)} onClick={() => handleOption(state, setState, props, ref, data)} onFocus={() => changeFocus(state, setState, true, ref, props)} onBlur={() => ref.changeFocus = setTimeout(() => changeFocus(state, setState, false, ref, props), 100)} tabIndex={0} >
 				<div className="img">
-					<img src="/IMG/lupa.svg" alt="Imágen de una lupa"/>
+					<img src="/IMG/lupa.svg" alt="Imágen de una lupa" />
 				</div>
 				<p>{data}</p>
 			</div>
 		);
 	});
 	if (options && options.length > 0)
-		options.unshift(<hr key={-1}/>)
+		options.unshift(<hr key={-1} />)
 	options.unshift(<div key={0} onKeyUp={(e) => selectOption(e, state, setState, props, ref, "Tu ubicación")} onClick={() => handleOption(state, setState, props, ref, "Tu ubicación")} onFocus={() => changeFocus(state, setState, true, ref, props)} onBlur={() => ref.changeFocus = setTimeout(() => changeFocus(state, setState, false, ref, props), 100)} tabIndex={0} >
 		<div className="img">
 			<img src="/IMG/ubicacion.svg" alt="Imágen de una diana" />
@@ -72,16 +77,16 @@ function Select(props) {
 	const [state, setState] = useState({ "value": "", "selectedValue": "", "focused": false });
 	useEffect(() => {
 		let value = props.defaultValue || "";
-		setState({...state, "value": value, "selectedValue": value})
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		setState({ ...state, "value": value, "selectedValue": value })
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [props.defaultValue]);
 	let idMultiplier = 99999;
 	let id = `Select${Math.floor(Math.random() * idMultiplier)}`;
-	let ref = {"global": undefined, "input": undefined, "arrow": undefined, "changeFocus": undefined};
+	let ref = { "global": undefined, "input": undefined, "arrow": undefined, "changeFocus": undefined };
 	return (
 		<div className={`input customSelect ${state.focused && "focus"}`} role="listbox" ref={(el) => ref.global = el}>
 			<label htmlFor={id}>{props.label}</label>
-			<input type={props.type ? props.type : "text"}onFocus={() => changeFocus(state, setState, true, ref, props)} onBlur={() => ref.changeFocus = setTimeout(() => changeFocus(state, setState, false, ref, props), 100 )} placeholder={props.placeholder || "Select..."} aria-required={props.required === true} ref={(el) => ref.input = el} id={id} value={state.value} onChange={(e) => handleFill(e, state, setState, props)}></input>
+			<input type={props.type ? props.type : "text"} onFocus={() => changeFocus(state, setState, true, ref, props)} onBlur={() => ref.changeFocus = setTimeout(() => changeFocus(state, setState, false, ref, props), 100)} placeholder={props.placeholder || "Select..."} aria-required={props.required === true} ref={(el) => ref.input = el} id={id} value={state.value} onChange={(e) => handleFill(e, state, setState, props)}></input>
 			<div className="searchIcon" ref={(el) => ref.arrow = el} onClick={() => handleArrow(state, setState, ref)}>
 				<img src="/IMG/lupaWhite.svg" alt="Imágen de una lupa" />
 			</div>
