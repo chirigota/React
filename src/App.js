@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Container from "./Components/Container";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import CategoryPicker from "./Components/selectCategory/SelectCategory2.js";
+import CategoryPicker from "./Components/selectCategory/SelectCategory.js";
 import { CategoryProvider } from "./Contexts/categoryContext.js";
 import OnBoarding from './Components/onboarding/OnBoarding';
 import Profile from './Components/login/views/Profile';

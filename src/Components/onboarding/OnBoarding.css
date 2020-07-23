@@ -425,12 +425,14 @@ text-align: center;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50%;
 }
 .errorNumber{
     color:#53C9B4 ;
-    margin-top: -11%;
     margin-left: 0;
+    margin: 0px;
+    text-align: center;
+    font-family: monda;
+    font-size: 7em;
 }
 .errorText{
     color: #53C9B4;
