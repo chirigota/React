@@ -2,10 +2,27 @@ section.selectCategory .top {
     justify-content: center;
     display: flex;
 }
+section.selectCategory h1, section.selectCategory h2 {
+    
+    margin: 36px 34.5px;
+}
+section.selectCategory h1 {
+    margin-top: 75px;
+}
+
+section.selectCategory h2:first-of-type {
+    margin-bottom: 12px;
+}
+
+section.selectCategory h2:nth-of-type(2) {
+    margin-bottom: 38px;
+}
 
 section.selectCategory {
     max-width: 500px;
     margin: auto;
+    max-width: 414px;
+    max-height: 736px;
 }
 
 section.selectCategory h1 {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CategoryItem from "./../categoryItem/CategoryItem";
-import {types as categories} from "../../JSON/categories.json";
+import { types as categories } from "../../JSON/categories.json";
+import Swiper from "better-react-swiper";
 import "./CategoryList.css"
 
 class CategoryList extends Component {
@@ -11,10 +12,10 @@ class CategoryList extends Component {
             categories: []
         }
     }
-    
+
     getCategories() {
         //fetch().then(() => {})
-        this.setState({...this.state, categories});
+        this.setState({ ...this.state, categories });
     }
 
     displayCategories() {
@@ -26,9 +27,12 @@ class CategoryList extends Component {
     }
 
     render() {
+        let items = this.displayCategories()
         return (
             <section className="CategoryList">
-                {this.displayCategories()}
+                <div>
+                    {items}
+                </div>
             </section>
         )
     }

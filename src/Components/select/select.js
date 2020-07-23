@@ -4,6 +4,27 @@ import "./select.scss";
 
 async function handleFill(event, state, setState, props) {
 	let value = event.target.value;
+	if (value[value.length - 2] == '´' && "aeiou".includes(value[value.length - 1])) {
+		let char;
+		switch (value[value.length - 1]) {
+			case "a":
+				char = "á";
+				break;
+			case "e":
+				char = "é";
+				break;
+			case "i":
+				char = "í";
+				break;
+			case "o":
+				char = "ó";
+				break;
+			case "u":
+				char = "ú";
+		}
+		value = value.substr(0, value.length - 2) + char;
+	}
+	console.log(value.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
 	try {
 		let data = await fetch(`http://localhost:3001/street/${value === props.defaultValue ? "" : value}`);
 		data = await data.json()//.then(data => data.json()).then(data => setState({...state, data}));

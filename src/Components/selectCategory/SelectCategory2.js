@@ -3,6 +3,8 @@ import CategoryList from "../categoryList/CategoryList.js";
 import "./SelectCategory.css";
 import Select from "../select/select.js";
 import { CategoryConsumer } from "../../Contexts/categoryContext.js";
+import Rectangle from "../login/views/Rectangle2";
+import { Auth as AuthContext } from "../login/context/AuthContext";
 
 class SelectCategory extends Component {
     constructor(props) {
@@ -12,9 +14,9 @@ class SelectCategory extends Component {
     handleStreet(value) {
         console.log("La nueva calle es:", value);
         if (value === "Ubicación actual")
-        
+
             navigator.geolocation.getCurrentPosition((pos) => {
-                console.log('soy: ',pos.coords.latitude)
+                console.log('soy: ', pos.coords.latitude)
                 this.setState({ ...this.state, "coords": { "latitude": pos.coords.latitude, "longitude": pos.coords.longitude } });
             });
         else {
@@ -26,8 +28,8 @@ class SelectCategory extends Component {
                         this.setState({ ...this.state, "coords": { "latitude": pos.coords.latitude, "longitude": pos.coords.longitude } });
                     });
             })
-            .catch( err => console.log(err))
-            console.log('fuera del fetch',value )
+                .catch(err => console.log(err))
+            console.log('fuera del fetch', value)
         }
 
     }
@@ -54,6 +56,7 @@ class SelectCategory extends Component {
                 <Select selectOption={this.handleStreet.bind(this)} defaultValue="Ubicación Actual" />
                 <h2>Categorías</h2>
                 <CategoryList />
+                <Rectangle />
             </section>
         )
     }

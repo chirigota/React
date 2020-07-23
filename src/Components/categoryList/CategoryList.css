@@ -1,7 +1,20 @@
-section.CategoryList {
+section.CategoryList div {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     margin: auto;
+    width: 800px;
 }
+
+section.CategoryList {
+    overflow-x: auto;
+    width: 100vw;
+}
+
+section ::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    scrollbar-width: none;
+} 
