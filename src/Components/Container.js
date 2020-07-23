@@ -5,6 +5,7 @@ import {CategoryConsumer} from "../Contexts/categoryContext.js";
 import { types as categories } from "../JSON/categories.json";
 
 class Container extends Component {
+
 	render() {
 		return (
 				<CategoryConsumer>

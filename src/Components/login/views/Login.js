@@ -98,6 +98,7 @@ const Login = ({ history }) => {
 							</Form.Item>
 							<p id="forget">¿Has olvidado la contraseña?</p>
 							<Form.Item>
+								{/* not available yet */}
 								<Button
 									type="primary"
 									htmlType="submit"
@@ -109,6 +110,7 @@ const Login = ({ history }) => {
 									type="primary"
 									htmlType="submit"
 									className="btnNoUser"
+								onClick={() => history.push("/")}
 								>
 								Ingresar sin usuario
                                 </Button>
@@ -136,7 +138,6 @@ const Login = ({ history }) => {
 						)}
 				</div>
 			</Content>
-		
 			<Rectangle />	
 			</div>
 		

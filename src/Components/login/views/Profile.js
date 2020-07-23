@@ -31,13 +31,14 @@ const Dashboard = ({ history }) => {
 			<div ><a href="/" className="arrowBack"> 
 				<img className="iconArrowProfile" src="images/arrow.png" alt="atrás" style={{
 					width: '100 %',display: 'flex',flexDirection: 'row'}}></img></a></div>
-					<p className="profileTitle">
-						Hola {name}
-				</p>
+					<p className="profileTitle">{name}</p>
+						{/* <p className="profileTitleName" >{name}</p> */}
+						
+				
 					<div className="profileTextContainer">
-							<a className="profileText" href="/generadorqr">Lector de QR</a>
-							<a className="profileText" href="/points">Tus puntos</a>
-							<a className="profileText" href="/favoritos">Tus favoritos</a>
+							<a className="profileText" href="/generadorqr">Generador de QR</a>
+							<a className="profileText" href="/points">Mis puntos</a>
+							<a className="profileText" href="/favoritos">Mis favoritos</a>
 							<a className="profileText" href="/ajustes">Ajustes de Perfil</a>
 							<a className="profileText" href="/ayuda">Ayuda</a>
 						</div>

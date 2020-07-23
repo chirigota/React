@@ -1,10 +1,8 @@
 /* margen entre 14 y 16 */
 
 .footer-container{
-	
-	/* margin-top: 138%; */
 	position: absolute;
-    bottom: -48px;
+    bottom: 0px;
     z-index: 9999
 }
 .slider{
@@ -17,7 +15,7 @@ box-shadow: 0px 11px 15px rgba(0, 0, 0, 0.2), 0px 9px 46px rgba(0, 0, 0, 0.12), 
 border-radius: 6px;
 margin: 14px;
 }
-h1{
+.h1Slider{
 font-family: Roboto;
 font-style: normal;
 font-weight: normal;
@@ -29,16 +27,31 @@ margin-block-start: 0em;
 	margin-inline-end: 0px;
 	    margin-left: 0.5em;
 }
-p{
+ .pCategorySlider{
 font-family: Roboto;
 font-style: normal;
 font-weight: normal;
 font-size: 12px;
 line-height: 12px;
-    /* margin-left: 0.5em; */
-}
-img{
+margin-left: 5%;
+ }   
+.pSliderOccupation{
+    margin-top: -5%;
+    margin-left: 20%;
+    font-size: 86%; 
+    }
+
+.imageSlider{
 	width: 187px;
     height: 86.29px;
     padding: 2%;
+}
+.storeOcupation{
+    margin-right: 5%;
+}
+.esDRug, .sc-AxhCb {
+    width: 100%;
+    -webkit-flex-basis: 80%;
+    -ms-flex-preferred-size: 80%;
+    flex-basis: 80%;
 }

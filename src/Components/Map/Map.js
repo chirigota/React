@@ -4,6 +4,8 @@ import { Map, TileLayer, Marker, Popup, ZoomControl} from "react-leaflet";
 import {CategoryConsumer} from "../../Contexts/categoryContext.js";
 import "./Map.css";
 import Route from "../route.js";
+import Footer from './../Footer';
+// import CategoryContext from "../Contexts/categoryContext.js";
 
 
 export default class App extends Component {
@@ -11,15 +13,16 @@ export default class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			"markers": [/*
-				{ "position": [40.419992, -3.6909257], "popup": "Puerta de alcalá" },
-				{ "position": [40.41695, -3.7037602], "popup": "Fuente derecha" },
-				{ "position": [40.416895, -3.7043942], "popup": "Fuente izquierda" },
-				{ "position": [40.4199823, -3.6887104], "popup": "Real Puerta de alcalá" },
-				{ "position": [40.41695, -3.7037602], "popup": "Fuente derecha" },
-				{ "position": [40.416895, -3.7043942], "popup": "Fuente izquierda" },
-				{ "position": [40.454676, -3.70232878], "popup": "Silvaga rules" }
-			*/],
+			 "markers": [
+			// 	 { "position": this.value.coords, 
+			// 	 		"popup": "Puerta de alcalá" },
+			// 	{ "position": [40.41695, -3.7037602], "popup": "Fuente derecha" },
+			// 	{ "position": [40.416895, -3.7043942], "popup": "Fuente izquierda" },
+			// 	{ "position": [40.4199823, -3.6887104], "popup": "Real Puerta de alcalá" },
+			// 	{ "position": [40.41695, -3.7037602], "popup": "Fuente derecha" },
+			// 	{ "position": [40.416895, -3.7043942], "popup": "Fuente izquierda" },
+			// 	{ "position": [40.454676, -3.70232878], "popup": "Silvaga rules" }
+			],
 			"pointA": {"x": 40.419992, "y": -3.6909257},
 			"routeRendered": false,
 			"selected": 0
@@ -40,7 +43,15 @@ export default class App extends Component {
 			let size = (id === this.state.selected ? 75 : 50);
 			return (
 				<Marker position={el.position} key={id} icon={L.icon({
-					"iconUrl": "IMG/iconG.png",
+					// if(value >= 20){
+					// 	"iconUrl": "landmark-verde-20.svg",
+					// } else if(value <=50){
+					// "iconUrl": "landmark-verde-20.svg"
+					// }else{
+					"iconUrl": "landmark-verde-20.svg"
+					// }
+					,
+					
 					// "shadowUrl": "https://unpkg.com/leaflet@1.6.0/dist/images/marker-shadow.png",
 					iconSize: [size, size], // size of the icon
 					shadowSize: [50, 60], // size of the shadow
@@ -66,16 +77,20 @@ export default class App extends Component {
 
 	render() {
 		return (
-			// added zoomControl to remove inital zoom icons
+			<>
 			<Map center={[40.416775, -3.703790]} zoom={15} maxZoom={19} zoomControl={false} onDblClick={this.generateMarker} ref={this.instantiateMap.bind(this)}>
 				<TileLayer
 					url='https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token=wmpmiE7gyJPKgHi1lGV8y5uY3jF26Xno7lfGHFLVsRXUkR68hm701leqj8Nr4eb4'
 					attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				/>
 				{/* added ZoomControl component to change zoom position  */}
-				<ZoomControl position='topright' />
-				{this.printMarker()}
+				{/* <ZoomControl position='topright' /> */}
+				{/* necesitaría ser CategoryConsumer */}
+					{this.printMarker()}
+
+				
 				<CategoryConsumer>
+					
 					{(value) => {
 						return (
 						<>
@@ -83,8 +98,14 @@ export default class App extends Component {
 						</>
 						)
 					}}
+					
 				</CategoryConsumer>
 			</Map>
+			<CategoryConsumer>
+					{(value) => <div className="hola" style={{width:'100vw'}}><Footer /></div>}	
+			</CategoryConsumer>
+			</>
+			
 			
 		);
 	}

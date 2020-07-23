@@ -156,16 +156,13 @@ border-color: transparent;
     position: absolute;
     color: white;
     justify-content: center;
-    /* margin-left: 38.5%; */
-    margin-left: 31.5%;
-    /* margin-top: 86px; */
-    margin-top: 96px;
-    /* width: 75.5px; */
+    margin-left: 34.5%;
+    margin-top: 115px;
     width: 68%;
     font-size: 28px;
     font-family: 'Monda';
     font-weight: 700;
-    line-height: 1.4;
+    line-height: 1.4
 }
 .pOb{
 	display: flex;
@@ -181,6 +178,7 @@ border-color: transparent;
     text-align: start;
     font-family: 'Roboto';
     font-weight: 400;
+    line-height: 130%;
 }
 a{
     position: absolute;
@@ -193,14 +191,21 @@ margin-top:9%;
 a:hover{
     color: white;
 }
-h1{
+.obTitle{
     position: absolute;
-    margin-top: -15%;
-    margin-left: 3%;
+    margin-top: -11%;
+    margin-left: 7%;
     font-family: 'Monda';
     font-weight: 700;
     font-size: 200px;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.2)
+}
+.backapp{
+    width: 100%;
+    max-width: 414px;
+    max-height: 736px;
+    padding: 0%;
+    height: auto;
 }
 /* --- --- --- LOG & SIGNUP --- --- ---  */
 #rectangle{
@@ -229,12 +234,14 @@ h1{
     flex-direction: row;
     margin-left: 11%;
     margin-top: -1%;
+     height: auto;
 }
 .arrowBack{
     position: inherit;
     margin-top: 18%;
     margin-left: 2%;
     display: flex;
+     height: auto;
 }
 
 #rectangle2{
@@ -266,7 +273,14 @@ h1{
 	font-family: 'Roboto';
 	margin-left: 23%;
 	font-size: 193%;
-	margin-top: 0%
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+.profileTitleName{
+  	font-family: 'Roboto';
+	margin-left: 23%;
+	font-size: 170%;
+	margin-top: 0%  
 }
 .profileText{
     font-size: 130% ;
@@ -324,8 +338,19 @@ h1{
     width: 73%;
     align-items: center;
      margin-left: 13%;
-    margin-bottom: 20%;
-
+    margin-bottom: 4%;
+}
+.qrCodeImg{
+    height: auto;
+}
+.qrText{
+    margin: 2%;
+    font-family: Roboto;
+    font-size: 160%;
+    line-height: 115%;
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 #profileLogo{
 	width: 135%;
@@ -339,6 +364,7 @@ h1{
 }
 .iconArrow2{
     width: 100%;
+    height: auto;
 }
 /* --- --- --- POINTS --- --- ---  */
 #points{
@@ -349,6 +375,7 @@ h1{
     justify-content: center;
     justify-self: center;
     margin-left: 24%;
+    height: auto;
 }
 .pointsEarned{
 font-family: 'Roboto';
@@ -363,6 +390,7 @@ text-align: center;
     flex-flow: column;
     justify-self: center;
     text-align: center;
+    line-height: 130%;
 }
 .pointsText2{
 font-family: 'Roboto';

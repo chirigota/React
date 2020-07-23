@@ -12,3 +12,10 @@ position: absolute;
 .leaflet-routing-container.leaflet-bar.leaflet-control.leaflet-routing-container-hide {
   display: none;
 } 
+.leaflet-container.leaflet-touch.leaflet-retina.leaflet-safari.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom{
+      max-width: 414px;
+      /* NOTE:change if necessary max 736px */
+    max-height: 577px;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+}
