@@ -3,7 +3,7 @@ import CategoryList from "../categoryList/CategoryList.js";
 import "./SelectCategory.css";
 import Select from "../select/select.js";
 import { CategoryConsumer } from "../../Contexts/categoryContext.js";
-import Rectangle from "../login/views/Rectangle2";
+import Rectangle2 from '../login/views/Rectangle2.js';
 import { Auth as AuthContext } from "../login/context/AuthContext";
 
 class SelectCategory extends Component {
@@ -20,7 +20,7 @@ class SelectCategory extends Component {
                 this.setState({ ...this.state, "coords": { "latitude": pos.coords.latitude, "longitude": pos.coords.longitude } });
             });
         else {
-            fetch(`https://nominatim.openstreetmap.org/search?q=${value} Madrid, España&format=json`).then(d => d.json()).then(d => {
+            fetch(`https://nominatim.openstreetmap.org/search?q=${value.replace(" ", "+")},Madrid,España&format=json`).then(d => d.json()).then(d => {
                 if (d[0])
                     this.setState({ ...this.state, "coords": { "latitude": d[0].lat, "longitude": d[0].lon } });
                 else
@@ -56,7 +56,7 @@ class SelectCategory extends Component {
                 <Select selectOption={this.handleStreet.bind(this)} defaultValue="Ubicación Actual" />
                 <h2>Categorías</h2>
                 <CategoryList />
-                <Rectangle />
+                <Rectangle2 />
             </section>
         )
     }

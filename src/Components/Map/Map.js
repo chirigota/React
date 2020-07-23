@@ -1,33 +1,54 @@
 import React, { Component } from "react";
 import L from "leaflet";
 import { Map, TileLayer, Marker, Popup, ZoomControl} from "react-leaflet";
-import {CategoryConsumer} from "../../Contexts/categoryContext.js";
+import categoryContext, { CategoryConsumer } from "../../Contexts/categoryContext.js";
 import "./map.css";
 import Route from "../route.js";
 import Footer from './../Footer';
-// import CategoryContext from "../Contexts/categoryContext.js";
 
 
 export default class App extends Component {
+	static contextType = categoryContext
 
 	constructor() {
 		super();
 		this.state = {
 			 "markers": [
-			// 	 { "position": this.value.coords, 
-			// 	 		"popup": "Puerta de alcalá" },
-			// 	{ "position": [40.41695, -3.7037602], "popup": "Fuente derecha" },
-			// 	{ "position": [40.416895, -3.7043942], "popup": "Fuente izquierda" },
-			// 	{ "position": [40.4199823, -3.6887104], "popup": "Real Puerta de alcalá" },
-			// 	{ "position": [40.41695, -3.7037602], "popup": "Fuente derecha" },
-			// 	{ "position": [40.416895, -3.7043942], "popup": "Fuente izquierda" },
-			// 	{ "position": [40.454676, -3.70232878], "popup": "Silvaga rules" }
+				// { "position": [40.41695, -3.7037602], "popup": "Fuente derecha" },
+				// { "position": [40.416895, -3.7043942], "popup": "Fuente izquierda" },
+				// { "position": [40.41695, -3.7037602], "popup": "Fuente derecha" },
+				// { "position": [40.416895, -3.7043942], "popup": "Fuente izquierda" }, 
 			],
-			"pointA": {"x": 40.419992, "y": -3.6909257},
+			"pointA": { "x": 40.41695, "y": -3.7037602},
 			"routeRendered": false,
 			"selected": 0
 		};
 		this.generateMarker = this.generateMarker.bind(this);
+	}
+
+	componentDidMount() {
+		console.log("this.context", this.context)
+		if (this.context.coords) {
+			this.setState({ ...this.context, "markers": [...this.state.markers, {"position": [this.context.coords.latitude, this.context.coords.longitude], "popup": "usuario"}]})
+			fetch(`http://localhost:3001/getStores/${this.context.coords.longitude}/${this.context.coords.latitude}/${this.context.selected}`)
+				.then(res => res.json())
+				.then(
+					(places) => {
+						console.log(places);
+						this.setState({
+							...this.state,
+							"markers": [...this.state.markers, ...places.map((place) => {
+								return {
+									"position": [parseFloat(place.lat), parseFloat(place.lng)],
+									"popup": place.place_name,
+									"color": (place.occupation < 50 ? "verde" : (place.occupation <= 75 ? "amarillo" : "rojo")),
+									...place
+								}
+							})]
+						});
+					},
+				)
+			}
 	}
 
 	removeMarker(id) {
@@ -39,26 +60,14 @@ export default class App extends Component {
 
 	printMarker() {
 		return this.state.markers.map((el, id) => {
-			// console.log("printed", el);
-			let size = (id === this.state.selected ? 75 : 50);
+			let size = (id === this.state.selected ? 50 : 30);
 			return (
-				<Marker position={el.position} key={id} icon={L.icon({
-					// if(value >= 20){
-					// 	"iconUrl": "landmark-verde-20.svg",
-					// } else if(value <=50){
-					// "iconUrl": "landmark-verde-20.svg"
-					// }else{
-					"iconUrl": "landmark-verde-20.svg"
-					// }
-					,
-					
-					// "shadowUrl": "https://unpkg.com/leaflet@1.6.0/dist/images/marker-shadow.png",
+				<Marker position={el.position} key={id} 
+				icon={L.icon({
+					"iconUrl": `images/landmark-${el.color ? el.color : "verde"}-20.svg`,
 					iconSize: [size, size], // size of the icon
-					shadowSize: [50, 60], // size of the shadow
-					iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
-					shadowAnchor: [15, 60],  // the same for the shadow
-					popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-				})} onContextMenu={() => this.removeMarker(id)}>
+				})} 
+				onContextMenu={() => this.removeMarker(id)}>
 					<Popup>{el.popup}</Popup>
 				</Marker>
 			);
@@ -85,10 +94,8 @@ export default class App extends Component {
 				/>
 				{/* added ZoomControl component to change zoom position  */}
 				{/* <ZoomControl position='topright' /> */}
-				{/* necesitaría ser CategoryConsumer */}
 					{this.printMarker()}
 
-				
 				<CategoryConsumer>
 					
 					{(value) => {
