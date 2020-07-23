@@ -14,7 +14,6 @@ export const AuthContext = ({ children }) => {
 			setShowChild(true);
 		});
 	}, []);
-
 	if (!showChild) {
 		return <Loading />;
 	} else {
