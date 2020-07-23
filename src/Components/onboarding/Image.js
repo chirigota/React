@@ -15,7 +15,7 @@ constructor(){
 	render() {
 		return (
 			<div>
-				<img src="images/backg0.png" alt="backapp3" style={{ width: '100%' }} />
+				<img className="backapp" src="images/backg0.png" alt="backapp3" style={{ width: '100%' }} />
 				<OnBoardingConsumer>
 					{(context) => 
 					<div>

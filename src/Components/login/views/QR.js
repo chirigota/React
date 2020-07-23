@@ -12,8 +12,9 @@ class QR extends Component{
 				<h2 className="qrTitle">Generador de QR</h2>
 				</div>
 				<div className="qrCode">
-					<img src="images/qrcode.png" alt="código qr"/>
+					<img className="qrCodeImg"src="images/qrcode.png" alt="código qr"/>
 				</div>
+				<p className="qrText">Muestra este código al pagar para obtener tus puntos</p>
 				<div className="qrFooter">
 				<Rectangle2 />
 				</div>

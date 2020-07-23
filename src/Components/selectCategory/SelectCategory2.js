@@ -12,7 +12,9 @@ class SelectCategory extends Component {
     handleStreet(value) {
         console.log("La nueva calle es:", value);
         if (value === "Ubicación actual")
+        
             navigator.geolocation.getCurrentPosition((pos) => {
+                console.log('soy: ',pos.coords.latitude)
                 this.setState({ ...this.state, "coords": { "latitude": pos.coords.latitude, "longitude": pos.coords.longitude } });
             });
         else {
@@ -24,6 +26,8 @@ class SelectCategory extends Component {
                         this.setState({ ...this.state, "coords": { "latitude": pos.coords.latitude, "longitude": pos.coords.longitude } });
                     });
             })
+            .catch( err => console.log(err))
+            console.log('fuera del fetch',value )
         }
 
     }
@@ -39,6 +43,7 @@ class SelectCategory extends Component {
             <section className="selectCategory">
                 <CategoryConsumer>
                     {(value) => {
+                        console.log("de algo")
                         console.log(value.coords, this.state.coords)
                         if (this.state.coords && (!value.coords || (this.state.coords.longitude !== value.coords.longitude || this.state.coords.latitude !== value.coords.latitude)))
                             value.selectStreet(this.state.coords);

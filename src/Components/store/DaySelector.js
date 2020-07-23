@@ -8,7 +8,7 @@ class DaySelector extends Component {
 
 	render() {
 		return (
-			<select onClick>
+			<select className="selectDay" onClick>
 				<option value="monday">lunes</option>
 				<option value="tuesday">martes</option>
 				<option value="wednesday">miércoles</option>

@@ -11,8 +11,8 @@ class OnBoarding1 extends Component {
 	render() {
 		return (
 			<div className="onBoardingContainer">
-				<div className="link"><a href="/category">Saltar</a> </div>
-				<div><h1>1</h1></div>
+				<div className="link"><a href="/login">Saltar</a> </div>
+				<div><h1 className="obTitle">1</h1></div>
 				<h2 className="hOb">Elige <br></br>ubicación</h2>
 					<div className='textContainer'>
 					<p className='pOb'>En la pantalla principal utiliza el buscador para indicar la zona de búsqueda</p>

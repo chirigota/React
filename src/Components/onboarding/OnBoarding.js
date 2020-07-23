@@ -65,10 +65,10 @@ renderSteps(){
 		return <Ob5 />
 	}else if(this.state.step === 6){
 		return <Ob6 />
-	}else if(this.state.step === 7){
-		return <Ob7 />
+	// }else if(this.state.step === 7){
+	// 	return <Ob7 />
 	}else{
-		return window.location.href = '/categories'
+		return window.location.href = '/login'
 	}
 }
 
