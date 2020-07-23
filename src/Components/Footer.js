@@ -2,17 +2,30 @@ import React, { Component } from 'react';
 import { Renderer, DivIcon } from 'leaflet';
 import Swipe from './Map/Swipe';
 import './Footer.css'
-import { CategoryConsumer } from "../Contexts/categoryContext.js";
+import categoryContext, { CategoryConsumer } from "./../Contexts/categoryContext";
 
 class Footer extends Component {
-
+	static contextType = categoryContext
+	constructor(){
+		super();
+		this.state = {
+			"selected": ""
+		}
+		
+	};
+	componentDidMount() {
+		console.log("this.context", this.context)
+		if(this.state.selected) {
+			this.setState({...this.context, })
+		}
+	};
 	render() {
 		
 		this.items =
 			[<CategoryConsumer>
 				{(value) =>
 					
-					<div className="slider" onClick={() => value.redirectTo("/store")}>
+				<div className="slider" onClick={() => value.redirectTo("/store")}>
 				<img className="imageSlider"
 				alt=""
 				src="https://maps.googleapis.com/maps/api/place/photo?photoreference=CmRaAAAAN2p9hjOeG5NTaz9j5H5Hqseys5hip3LINZHQ8m8C0Ubmk5SL0siDeV0S20XHVGH0eberk2tQ8VXY7bUHwp7mrA4D_GkSoHpvubGczz9GPkiIygBkmCqvaHr-YNXzSsd4EhBPNH0Rs8X3fnzjMoZW_a0UGhQKHmwP4tavOeNsVdt4qrw9IGlwMg&sensor=false&maxheight=400&maxwidth=400&key=AIzaSyC5XW2GEHpsKykU2Sdvt0MP4aNX0rCySpA"
@@ -20,7 +33,9 @@ class Footer extends Component {
 				/>
 				<h1 className="h1Slider">Pastelería Vait</h1>
 				<p className="pCategorySlider">PANADERÍA</p>
-				<p className="pSliderOccupation">ahora hay poca gente<img className="storeOcupation" src="images/landmark-verde-20.svg" alt="círculo" /></p>
+				<p className="pSliderOccupation">ahora hay poca gente
+				{/* <img className="storeOcupation" src={`images/landmark-${el.color ? el.color : "verde"}-20.svg`} alt="círculo" /> */}
+				</p>
 				</div> 
 			}
 			</CategoryConsumer>,

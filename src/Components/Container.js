@@ -10,12 +10,12 @@ class Container extends Component {
 		return (
 				<CategoryConsumer>
 					{(value) => 
-						<div>
-							<p>Selected: {value.selected !== undefined && categories.filter(el => el.id === parseInt(value.selected))[0].name}</p>
-						<p>Street: lat: {value.coords && value.coords.latitude} lon: {value.coords && value.coords.longitude}</p>
-							<button onClick = {() => value.redirectTo("/")}>Volver</button>
+						// <div>
+						// 	<p>Selected: {value.selected !== undefined && categories.filter(el => el.id === parseInt(value.selected))[0].name}</p>
+						// <p>Street: lat: {value.coords && value.coords.latitude} lon: {value.coords && value.coords.longitude}</p>
+						// 	<button onClick = {() => value.redirectTo("/")}>Volver</button>
 							<Map />
-						</div>
+						// </div>
 					}
 				</CategoryConsumer>
 		);
