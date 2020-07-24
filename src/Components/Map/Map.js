@@ -55,10 +55,11 @@ export default class App extends Component {
 	printMarker() {
 		return this.state.markers.map((el, id) => {
 			let size = (id === this.state.selected ? 50 : 30);
+			console.log(el.color);
 			return (
 				<Marker position={el.position} key={id}
 					icon={L.icon({
-						"iconUrl": `images/landmark-${el.color ? el.color : "verde"}-20.svg`,
+						"iconUrl": `images/landmark-${el.color ? el.color : "user"}-20.svg`,
 						iconSize: [size, size], // size of the icon
 					})}
 					onContextMenu={() => this.removeMarker(id)}>
@@ -88,10 +89,13 @@ export default class App extends Component {
 					/>
 					{/* added ZoomControl component to change zoom position  */}
 					{/* <ZoomControl position='topright' /> */}
+					{this.printMarker()}
 
 					<CategoryConsumer>
 
 						{(value) => {
+							if ((!this.props.renderRoute && value.selected === undefined) || (this.props.renderRoute && !value.selectedPlace) || !value.coords)
+								value.redirectTo("/")
 							console.log(value.coords, value.selectedPlace)
 							return (
 								<>
@@ -103,7 +107,6 @@ export default class App extends Component {
 					</CategoryConsumer>
 				</Map>
 				{!this.props.renderRoute &&
-					this.printMarker() &&
 					<CategoryConsumer>
 						{(value) =>
 							<div className="hola" style={{ width: '100vw' }}>

@@ -3,7 +3,6 @@ import { Renderer, DivIcon } from 'leaflet';
 import Swipe from './Map/Swipe';
 import './Footer.css'
 import CategoryContext, { CategoryConsumer } from "./../Contexts/categoryContext";
-import { types as categories } from "../JSON/categories.json";
 
 class Footer extends Component {
 	static contextType = CategoryContext
@@ -28,13 +27,17 @@ class Footer extends Component {
 	generateCards(places, value) {
 		return places.map((place) =>
 			<div className="slider" onClick={() => { value.selectPlace(place, "/store") }}>
-				<img className="imageSlider"
-					alt=""
-					src={place.url_photo}
-				/>
+				<div className="imageContainer">
+					<img className="imageSlider"
+						alt=""
+						src={place.url_photo}
+					/>
+				</div>
 				<h1 className="h1Slider">{place.place_name}</h1>
-				<p className="pCategorySlider">{categories.filter(category => category.id == place.type)[0].name}</p>
-				<p className="pSliderOccupation">ahora hay poca gente<img className="storeOcupation" src="images/landmark-verde-20.svg" alt="círculo" /></p>
+				<div className="occupationContainer">
+					<div className={`occupationMarker ${place.occupation <= 50 ? "green" : place.occupation <= 75 ? "yellow" : "red"}`}></div>
+					<p className="pSliderOccupation">{place.occupation <= 50 ? "Ocupación baja" : place.occupation <= 75 ? "Ocupación media" : "Ocupación alta"}</p>
+				</div>
 			</div>
 		)
 	}
