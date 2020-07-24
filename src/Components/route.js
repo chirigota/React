@@ -8,7 +8,7 @@ class Routing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			vehicle: [{"vehicle": "car", "color": "purple"}, {"vehicle": "bike", "color": "green"}, {"vehicle": "foot", "color": "blue"}, {"vehicle": "hike", "color": "darkblue"}, {"vehicle": "mtb", "color": "darkgreen"}, {"vehicle": "racingbike", "color": "black"}, {"vehicle": "scooter", "color": "blue"}, {"vehicle": "truck", "color": "blue"}, {"vehicle": "small_truck", "color": "blue"}]
+			vehicle: [{ "vehicle": "car", "color": "purple" }, { "vehicle": "bike", "color": "green" }, { "vehicle": "foot", "color": "blue" }, { "vehicle": "hike", "color": "darkblue" }, { "vehicle": "mtb", "color": "darkgreen" }, { "vehicle": "racingbike", "color": "black" }, { "vehicle": "scooter", "color": "blue" }, { "vehicle": "truck", "color": "blue" }, { "vehicle": "small_truck", "color": "blue" }]
 		}
 	}
 
@@ -20,11 +20,11 @@ class Routing extends Component {
 		let apiKey = "1a74686f-220e-43c4-9da7-363a1639a13e";
 		let vehicle = [{ "vehicle": "car", "color": "purple" }, { "vehicle": "bike", "color": "green" }, { "vehicle": "foot", "color": "blue" }, { "vehicle": "hike", "color": "darkblue" }, { "vehicle": "mtb", "color": "darkgreen" }, { "vehicle": "racingbike", "color": "black" }, { "vehicle": "scooter", "color": "blue" }, { "vehicle": "truck", "color": "blue" }, { "vehicle": "small_truck", "color": "blue" }]
 		let selectedVehicle = 2;
-		
+
 		let leafletElement = L.Routing.control({
 			"waypoints": [
-				L.latLng(this.props.pointA.x, this.props.pointA.y),
-				L.latLng(this.props.pointB.x, this.props.pointB.y),
+				L.latLng(this.props.pointA.lat, this.props.pointA.lon),
+				L.latLng(this.props.pointB.lat, this.props.pointB.lon),
 			],
 			"router": new L.Routing.graphHopper(apiKey, {
 				"urlParameters": {
@@ -42,7 +42,7 @@ class Routing extends Component {
 				],
 				"addWaypoints": false
 			},
-			"routeWhileDragging":true,
+			"routeWhileDragging": true,
 			"addWaypoints": true,
 			//drag
 			"draggableWaypoints": true,

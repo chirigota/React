@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import L from "leaflet";
-import { Map, TileLayer, Marker, Popup, ZoomControl } from "react-leaflet";
-import categoryContext, { CategoryConsumer } from "./../../Contexts/categoryContext";
+import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import categoryContext, { CategoryConsumer } from "../../Contexts/categoryContext.js";
 import "./map.css";
 import Route from "../route.js";
 import Footer from './../Footer';
@@ -26,7 +26,7 @@ export default class App extends Component {
 		console.log("this.context", this.context)
 		if (this.context.coords) {
 			this.setState({ ...this.context, "markers": [...this.state.markers, { "position": [this.context.coords.latitude, this.context.coords.longitude], "popup": "usuario" }] })
-			fetch(`http://localhost:3001/getStores/${this.context.coords.latitude}/${this.context.coords.latitude}/${this.context.selected}`)
+			fetch(`http://localhost:3001/getStores/${this.context.coords.latitude}/${this.context.coords.longitude}/${this.context.selected}`)
 				.then(res => res.json())
 				.then(
 					(places) => {
@@ -99,23 +99,29 @@ export default class App extends Component {
 					/>
 					{/* added ZoomControl component to change zoom position  */}
 					{/* <ZoomControl position='topright' /> */}
-					{this.printMarker()}
 
 					<CategoryConsumer>
 
 						{(value) => {
+							console.log(value.coords, value.selectedPlace)
 							return (
 								<>
-									{this.state.map && value.pointB && <Route map={this.state.map} pointA={this.state.pointA} pointB={value.pointB} />}
+									{this.props.renderRoute && <Route pointA={{ "lat": value.coords.latitude, "lon": value.coords.longitude }} pointB={{ "lat": value.selectedPlace.lat, "lon": value.selectedPlace.lng }} map={this.state.map} />}
 								</>
 							)
 						}}
 
 					</CategoryConsumer>
 				</Map>
-				<CategoryConsumer>
-					{(value) => <div className="hola" style={{ width: '100vw' }}><Footer /></div>}
-				</CategoryConsumer>
+				{!this.props.renderRoute &&
+					this.printMarker() &&
+					<CategoryConsumer>
+						{(value) =>
+							<div className="hola" style={{ width: '100vw' }}>
+								<Footer />
+							</div>}
+					</CategoryConsumer>
+				}
 				</div>
 			</>
 

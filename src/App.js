@@ -11,6 +11,7 @@ import Points from './Components/login/views/Points';
 import QR from './Components/login/views/QR';
 import { AuthContext } from "./Components/login/context/AuthContext";
 import Store from './Components/store/Store';
+import RouteContainer from "./Components/routeContainer/RouteContainer";
 
 export default class App extends Component {
 	constructor(props) {
@@ -19,7 +20,8 @@ export default class App extends Component {
 			"selected": undefined,
 			"redirectTo": undefined,
 			"pointB": undefined,
-			"coords": undefined
+			"coords": undefined,
+			"place": undefined
 		}
 
 		this.redirectTo = this.redirectTo.bind(this);
@@ -38,43 +40,49 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<AuthContext>
-				<Router>
-					{this.state.redirectTo && this.getRedirection()}
-					<Switch>
-						<Route exact path="/login">
-							<Login />
-						</Route>
-						<Route exact path="/onboarding">
-							<OnBoarding />
-						</Route>
-						<Route exact path="/profile">
-							<Profile />
-						</Route>
-						<Route exact path="/qrgenerator">
-							<QR />
-						</Route>
-						<Route exact path="/points">
-							<Points />
-						</Route>
-						<CategoryProvider value={{ "pointB": this.state.pointB, 
-						"selected": this.state.selected, "redirectTo": this.redirectTo, 
-						"coords": this.state.coords, 
-						"selectStreet": (coords) => {this.setState({...this.state, coords}); 
-						console.log(coords)},"selectCategory": (selected, redirectTo = undefined, pointB = []) => { this.setState({ ...this.state, selected, redirectTo, pointB }) } }}>
+			<CategoryProvider value={{
+				"pointB": this.state.pointB,
+				"selected": this.state.selected, "redirectTo": this.redirectTo,
+				"coords": this.state.coords,
+				"selectStreet": (coords) => {
+					this.setState({ ...this.state, coords });
+					console.log(coords)
+				}, "selectCategory": (selected, redirectTo = undefined, pointB = []) => { this.setState({ ...this.state, selected, redirectTo, pointB }) },
+				"selectPlace": (place, redirectTo = undefined) => { this.setState({ ...this.state, place, redirectTo }) },
+				"selectedPlace": this.state.place
+			}}>
+				<AuthContext>
+					<Router>
+						{this.state.redirectTo && this.getRedirection()}
+						<Switch>
+							<Route exact path="/login">
+								<Login />
+							</Route>
+							<Route exact path="/onboarding">
+								<OnBoarding />
+							</Route>
+							<Route exact path="/profile">
+								<Profile />
+							</Route>
+							<Route exact path="/qrgenerator">
+								<QR />
+							</Route>
+							<Route exact path="/points">
+								<Points />
+							</Route>
 							<Route exact path="/store">
 								<Store />
 							</Route>
 							<Route exact path="/" component={CategoryPicker} />
 							<Route exact path="/map" component={Container} />
-						</CategoryProvider>
-						<Route path="*">
-							<Error />
-						</Route>
-					</Switch>
-				</Router>
-			</AuthContext>
-
+							<Route exact path="/route" component={RouteContainer} />
+							<Route path="*">
+								<Error />
+							</Route>
+						</Switch>
+					</Router>
+				</AuthContext>
+			</CategoryProvider>
 		);
 	}
 }
