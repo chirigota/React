@@ -9,7 +9,7 @@ class Footer extends Component {
 	constructor() {
 		super();
 		this.state = {
-			"selected": ""
+			"selected": " "
 		}
 
 	};
@@ -19,6 +19,10 @@ class Footer extends Component {
 			this.setState({ ...this.context, })
 		}
 	};
+
+	printSlider(){
+		console.log('soy obj de printSlider',)
+	}
 	render() {
 
 		this.items =

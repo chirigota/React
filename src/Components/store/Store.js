@@ -8,6 +8,10 @@ class Store extends Component{
 		return(
 			<div className="storeContainer">
 				<div className="storePicContainer">
+					<a href="/map" className="storeArrowBack">
+						<img className="iconStoreArrowBack" src="images/arrow.png" alt="atrás" style={{
+							width: '100 %', display: 'flex', flexDirection: 'row'
+						}}></img></a>
 					<img className="storePic" src="https://maps.googleapis.com/maps/api/place/photo?photoreference=CmRaAAAAN2p9hjOeG5NTaz9j5H5Hqseys5hip3LINZHQ8m8C0Ubmk5SL0siDeV0S20XHVGH0eberk2tQ8VXY7bUHwp7mrA4D_GkSoHpvubGczz9GPkiIygBkmCqvaHr-YNXzSsd4EhBPNH0Rs8X3fnzjMoZW_a0UGhQKHmwP4tavOeNsVdt4qrw9IGlwMg&sensor=false&maxheight=400&maxwidth=400&key=AIzaSyC5XW2GEHpsKykU2Sdvt0MP4aNX0rCySpA"
 					 alt="foto de comercio"/>
 				</div>

@@ -17,7 +17,7 @@ class Routing extends Component {
 	}
 
 	createLeafletElement() {
-		let apiKey = "e7a79afb-245d-47bc-8f68-518e717d2fce";
+		let apiKey = "1a74686f-220e-43c4-9da7-363a1639a13e";
 		let vehicle = [{ "vehicle": "car", "color": "purple" }, { "vehicle": "bike", "color": "green" }, { "vehicle": "foot", "color": "blue" }, { "vehicle": "hike", "color": "darkblue" }, { "vehicle": "mtb", "color": "darkgreen" }, { "vehicle": "racingbike", "color": "black" }, { "vehicle": "scooter", "color": "blue" }, { "vehicle": "truck", "color": "blue" }, { "vehicle": "small_truck", "color": "blue" }]
 		let selectedVehicle = 2;
 		

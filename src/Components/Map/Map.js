@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import L from "leaflet";
 import { Map, TileLayer, Marker, Popup, ZoomControl } from "react-leaflet";
-import categoryContext, { CategoryConsumer } from "../../Contexts/categoryContext.js";
+import categoryContext, { CategoryConsumer } from "./../../Contexts/categoryContext";
 import "./map.css";
 import Route from "../route.js";
 import Footer from './../Footer';
+import MapHeader from './MapHeader';
 
 
 export default class App extends Component {
@@ -25,7 +26,7 @@ export default class App extends Component {
 		console.log("this.context", this.context)
 		if (this.context.coords) {
 			this.setState({ ...this.context, "markers": [...this.state.markers, { "position": [this.context.coords.latitude, this.context.coords.longitude], "popup": "usuario" }] })
-			fetch(`http://localhost:3001/getStores/${this.context.coords.longitude}/${this.context.coords.latitude}/${this.context.selected}`)
+			fetch(`http://localhost:3001/getStores/${this.context.coords.latitude}/${this.context.coords.latitude}/${this.context.selected}`)
 				.then(res => res.json())
 				.then(
 					(places) => {
@@ -81,6 +82,16 @@ export default class App extends Component {
 	render() {
 		return (
 			<>
+			<div>
+				<CategoryConsumer>
+						<div ><a href="/" className="arrowBack">
+							<img className="iconArrowMap" src="images/arrow.png" alt="atrás"
+								style={{
+									width: '50 %', display: 'flex', flexDirection: 'row'
+								}}></img></a></div>
+						{(value) => <button onClick={() => value.redirectTo("/profile")} className="btnProfile"> <img id="profileLogo" src="images/perfil-32.svg" alt="profile-icon" /></button>}
+				</CategoryConsumer>
+				<MapHeader />
 				<Map center={[40.416775, -3.703790]} zoom={15} maxZoom={19} zoomControl={false} onDblClick={this.generateMarker} ref={this.instantiateMap.bind(this)}>
 					<TileLayer
 						url='https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token=wmpmiE7gyJPKgHi1lGV8y5uY3jF26Xno7lfGHFLVsRXUkR68hm701leqj8Nr4eb4'
@@ -105,6 +116,7 @@ export default class App extends Component {
 				<CategoryConsumer>
 					{(value) => <div className="hola" style={{ width: '100vw' }}><Footer /></div>}
 				</CategoryConsumer>
+				</div>
 			</>
 
 
