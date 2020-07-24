@@ -15,7 +15,31 @@ position: absolute;
 .leaflet-container.leaflet-touch.leaflet-retina.leaflet-safari.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom{
       max-width: 414px;
       /* NOTE:change if necessary max 736px */
-    max-height: 577px;
-    border-top-left-radius: 10%;
-    border-top-right-radius: 10%;
+    max-height: 653px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.colorContainer {
+  background: linear-gradient(270deg, #00B3BD -13.71%, #53C9B4 50%);;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -9999999;
+}
+
+.arrowContainer {
+  height: 83px;
+  background: linear-gradient(270deg, #00B3BD -13.71%, #53C9B4 50%);;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.arrowContainer .arrowBack {
+  margin-top: 0px;
+}
+
+.arrowContainer .arrowBack img {
+  width: 33px;
 }

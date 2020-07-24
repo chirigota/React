@@ -4,6 +4,7 @@ import { Auth } from "../context/AuthContext";
 import { withRouter } from "react-router";
 import firebaseConfig from "../Firebaseconfig";
 import Rectangle2 from './Rectangle2';
+import { CategoryConsumer } from "../../../Contexts/categoryContext"
 
 const Dashboard = ({ history }) => {
 	const { Content, Footer } = Layout;
@@ -30,14 +31,16 @@ const Dashboard = ({ history }) => {
 			<p className="profileTitle">{name}</p>
 			{/* <p className="profileTitleName" >{name}</p> */}
 
-
-			<div className="profileTextContainer">
-				<a className="profileText" href="/generadorqr">Generador de QR</a>
-				<a className="profileText" href="/points">Mis puntos</a>
-				<a className="profileText" href="/favoritos">Mis favoritos</a>
-				<a className="profileText" href="/ajustes">Ajustes de Perfil</a>
-				<a className="profileText" href="/ayuda">Ayuda</a>
-			</div>
+			<CategoryConsumer>
+				{(value) =>
+					<div className="profileTextContainer">
+						<a className="profileText" onClick={() => value.redirectTo("/qrgenerator")}>Generador de QR</a>
+						<a className="profileText" onClick={() => value.redirectTo("/points")}>Mis puntos</a>
+						<a className="profileText" onClick={() => value.redirectTo("/favoritos")}>Mis favoritos</a>
+						<a className="profileText" onClick={() => value.redirectTo("/ajustes")}>Ajustes de Perfil</a>
+						<a className="profileText" onClick={() => value.redirectTo("/ayuda")}>Ayuda</a>
+					</div>}
+			</CategoryConsumer>
 			<div className="close">
 				<button className="btnClose" onClick={() => firebaseConfig.auth().signOut()} >Cerrar Sesión</button>
 

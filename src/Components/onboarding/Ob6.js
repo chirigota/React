@@ -12,9 +12,9 @@ class OnBoarding6 extends Component {
 			<div className="onBoardingContainer">
 				<div className="link"><a href="/login">Saltar</a> </div>
 				<div><h1 className="obTitle">6</h1></div>
-				<div className="text1">	
+				<div className="text1">
 					<h2 className="hOb">Lee tu código <br></br>QR</h2>
-					<p className="pOb">Cuando termines de hacer tu compra, ve a tu perfil, pincha sobre "lector de QR" y muéstraselo al vendedor.</p>
+					<p className="pOb">Cuando termines de hacer tu compra, ve a tu perfil, pincha sobre "generador de QR" y muéstraselo al vendedor.</p>
 				</div>
 				<Image />
 			</div>

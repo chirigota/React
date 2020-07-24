@@ -5,7 +5,6 @@ import categoryContext, { CategoryConsumer } from "../../Contexts/categoryContex
 import "./map.css";
 import Route from "../route.js";
 import Footer from './../Footer';
-// import MapHeader from './MapHeader';
 
 
 export default class App extends Component {
@@ -86,17 +85,20 @@ export default class App extends Component {
 				<div>
 					<CategoryConsumer>
 						{(value) =>
-							<div >
-								<a href="/" className="arrowBack">
-									<img className="iconArrowMap" src="images/arrow.png" alt="atrás"
-										style={{
-											width: '50 %', display: 'flex', flexDirection: 'row'
-										}}></img>
-								</a>
-								<button onClick={() => value.redirectTo("/profile")} className="btnProfile">
-									<img id="profileLogo" src="images/perfil-32.svg" alt="profile-icon" />
-								</button>
-							</div>
+							<>
+								<div className="colorContainer"></div>
+								<div className="arrowContainer">
+									<a href="/" className="arrowBack">
+										<img className="iconArrowMap" src="images/arrow.png" alt="atrás"
+											style={{
+												width: '50 %', display: 'flex', flexDirection: 'row'
+											}}></img>
+									</a>
+									<button onClick={() => value.redirectTo("/profile")} className="btnProfile">
+										<img id="profileLogo" src="images/perfil-32.svg" alt="profile-icon" />
+									</button>
+								</div>
+							</>
 						}
 					</CategoryConsumer>
 					{/* <MapHeader /> */}
@@ -107,7 +109,7 @@ export default class App extends Component {
 						/>
 						{/* added ZoomControl component to change zoom position  */}
 						{/* <ZoomControl position='topright' /> */}
-						{this.printMarker()}
+						{!this.props.renderRoute && this.printMarker()}
 
 						<CategoryConsumer>
 

@@ -14,8 +14,8 @@
 	padding: 0%;
 }
 .storeInfoContainer{
-	border-top-left-radius: 10%;
-	border-top-right-radius: 10%;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
 	background-color: white;
 	position: absolute;
 	margin-top: 62%;
@@ -29,7 +29,7 @@
 	justify-content: center;
 }
 .storeType, .storeAvailability, .storeStars{
-	margin-top: 6%;
+	margin-top: 10px;
 	font-family:'Roboto' ;
 	margin-left: 11%;
 	font-size: 95%;

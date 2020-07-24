@@ -12,9 +12,9 @@ class Store extends Component {
 				{(value) => {
 					if (value.selectedPlace) {
 						return <div className="storeContainer">
-								<a href="/map" className="storeArrowBack">
+							<a onClick={() => value.redirectTo("/map")} className="storeArrowBack">
 								<img className="iconStoreArrowBack" src="images/arrow.png" alt="atrás" style={{
-								width: '100 %', display: 'flex', flexDirection: 'row'
+									width: '100 %', display: 'flex', flexDirection: 'row'
 								}}></img></a>
 							<div className="storePicContainer">
 								<img className="storePic" src={value.selectedPlace.url_photo}
