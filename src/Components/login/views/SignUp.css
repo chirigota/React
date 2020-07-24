@@ -5,9 +5,6 @@ h2{
 font-size: 1em;
 margin-top: 10%;
 }
-/* .formRegister{
-	margin-top:26%;
-} */
 .btnRegister{
 display: flex;
 flex-direction: column;

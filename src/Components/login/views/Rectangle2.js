@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Rectangle2.css';
 import { CategoryConsumer } from "../../../Contexts/categoryContext";
-// import './../../onboarding/OnBoarding.css'
 
 class Rectangle2 extends Component {
 

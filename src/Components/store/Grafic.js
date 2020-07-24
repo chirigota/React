@@ -53,8 +53,6 @@ const data = [
 	},
 ];
 
-// de 8 a 20
-
 export default class Example extends PureComponent {
 	static jsfiddleUrl = 'https://jsfiddle.net/alidingling/30763kr7/';
 

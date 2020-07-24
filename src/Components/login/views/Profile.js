@@ -1,8 +1,3 @@
-// import React, { useEffect, useContext, useState } from "react";
-// import Header from "../components/Header";
-// import { Layout } from "antd";
-// import { Auth } from "../context/AuthContext";
-// import { withRouter } from "react-router";
 import React, { useEffect, useContext, useState } from "react";
 import { Layout, Button } from "antd";
 import { Auth } from "../context/AuthContext";
@@ -28,26 +23,27 @@ const Dashboard = ({ history }) => {
 
 	return (
 		<div className="profileContainer">
-			<div ><a href="/" className="arrowBack"> 
+			<div ><a href="/" className="arrowBack">
 				<img className="iconArrowProfile" src="images/arrow.png" alt="atrás" style={{
-					width: '100 %',display: 'flex',flexDirection: 'row'}}></img></a></div>
-					<p className="profileTitle">{name}</p>
-						{/* <p className="profileTitleName" >{name}</p> */}
-						
-				
-					<div className="profileTextContainer">
-							<a className="profileText" href="/generadorqr">Generador de QR</a>
-							<a className="profileText" href="/points">Mis puntos</a>
-							<a className="profileText" href="/favoritos">Mis favoritos</a>
-							<a className="profileText" href="/ajustes">Ajustes de Perfil</a>
-							<a className="profileText" href="/ayuda">Ayuda</a>
-						</div>
-						<div className="close">
-							<button className="btnClose" onClick={() => firebaseConfig.auth().signOut()} >Cerrar Sesión</button>
+					width: '100 %', display: 'flex', flexDirection: 'row'
+				}}></img></a></div>
+			<p className="profileTitle">{name}</p>
+			{/* <p className="profileTitleName" >{name}</p> */}
 
-						</div>
-						<Rectangle2 />
-					</div>
+
+			<div className="profileTextContainer">
+				<a className="profileText" href="/generadorqr">Generador de QR</a>
+				<a className="profileText" href="/points">Mis puntos</a>
+				<a className="profileText" href="/favoritos">Mis favoritos</a>
+				<a className="profileText" href="/ajustes">Ajustes de Perfil</a>
+				<a className="profileText" href="/ayuda">Ayuda</a>
+			</div>
+			<div className="close">
+				<button className="btnClose" onClick={() => firebaseConfig.auth().signOut()} >Cerrar Sesión</button>
+
+			</div>
+			<Rectangle2 />
+		</div>
 	);
 
 }

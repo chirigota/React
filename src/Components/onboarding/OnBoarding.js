@@ -19,65 +19,63 @@ import './Logo1.css';
 
 
 class OnBoarding extends Component {
-constructor(){
-	super()
-	this.state = {
-		step : 0
+	constructor() {
+		super()
+		this.state = {
+			step: 0
+		}
+		this.getStep = this.getStep.bind(this)
+		this.calculateStep = this.calculateStep.bind(this)
 	}
-	this.getStep = this.getStep.bind(this)
-	this.calculateStep = this.calculateStep.bind(this)
-}
-getStep(step){
-	this.setState({
-		...this.state, 
-		step: step
-	})
-}
-calculateStep(step){
-	if(step === true){
-		let newStep = this.state.step +1
+	getStep(step) {
 		this.setState({
 			...this.state,
-			step: newStep
-		})
-	} else {
-		let newStep = this.state.step -1
-		this.setState({
-			...this.state,
-			step: newStep
+			step: step
 		})
 	}
-}
-
-
-renderSteps(){
-	if(this.state.step === 0){
-		return <Ob0 />
-	} else if(this.state.step === 1){
-		return <Ob1 />
-	} else if(this.state.step === 2){
-		return <Ob2 />
-	}else if(this.state.step === 3){
-		return <Ob3 />
-	}else if(this.state.step === 4){
-		return <Ob4 />
-	}else if(this.state.step === 5){
-		return <Ob5 />
-	}else if(this.state.step === 6){
-		return <Ob6 />
-	// }else if(this.state.step === 7){
-	// 	return <Ob7 />
-	}else{
-		return window.location.href = '/login'
+	calculateStep(step) {
+		if (step === true) {
+			let newStep = this.state.step + 1
+			this.setState({
+				...this.state,
+				step: newStep
+			})
+		} else {
+			let newStep = this.state.step - 1
+			this.setState({
+				...this.state,
+				step: newStep
+			})
+		}
 	}
-}
 
-	render(){
-		return(
+
+	renderSteps() {
+		if (this.state.step === 0) {
+			return <Ob0 />
+		} else if (this.state.step === 1) {
+			return <Ob1 />
+		} else if (this.state.step === 2) {
+			return <Ob2 />
+		} else if (this.state.step === 3) {
+			return <Ob3 />
+		} else if (this.state.step === 4) {
+			return <Ob4 />
+		} else if (this.state.step === 5) {
+			return <Ob5 />
+		} else if (this.state.step === 6) {
+			return <Ob6 />
+		} else {
+			return window.location.href = '/login'
+		}
+	}
+
+	render() {
+		return (
 			<div className="onBoardingContainer">
-			<OnBoardingContext.Provider value={{getStep : this.getStep, calculateStep : this.calculateStep}}>
-			{this.renderSteps()}
-			</OnBoardingContext.Provider>
+				<OnBoardingContext.Provider value={{ getStep: this.getStep, calculateStep: this.calculateStep }}>
+					{this.renderSteps()}
+				</OnBoardingContext.Provider>
 			</div>
 		)
 	}

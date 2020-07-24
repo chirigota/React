@@ -1,7 +1,6 @@
 import React from "react";
 import { Component } from "react";
-import './Grafic.css'
-// import { render } from "@testing-library/react";
+import './Grafic.css';
 
 class DaySelector extends Component {
 

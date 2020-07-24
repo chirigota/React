@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import L from "leaflet";
-import { Map, TileLayer, Marker, Popup, ZoomControl} from "react-leaflet";
+import { Map, TileLayer, Marker, Popup, ZoomControl } from "react-leaflet";
 import categoryContext, { CategoryConsumer } from "../../Contexts/categoryContext.js";
 import "./map.css";
 import Route from "../route.js";
@@ -13,13 +13,8 @@ export default class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			 "markers": [
-				// { "position": [40.41695, -3.7037602], "popup": "Fuente derecha" },
-				// { "position": [40.416895, -3.7043942], "popup": "Fuente izquierda" },
-				// { "position": [40.41695, -3.7037602], "popup": "Fuente derecha" },
-				// { "position": [40.416895, -3.7043942], "popup": "Fuente izquierda" }, 
-			],
-			"pointA": { "x": 40.41695, "y": -3.7037602},
+			"markers": [],
+			"pointA": { "x": 40.41695, "y": -3.7037602 },
 			"routeRendered": false,
 			"selected": 0
 		};
@@ -29,7 +24,7 @@ export default class App extends Component {
 	componentDidMount() {
 		console.log("this.context", this.context)
 		if (this.context.coords) {
-			this.setState({ ...this.context, "markers": [...this.state.markers, {"position": [this.context.coords.latitude, this.context.coords.longitude], "popup": "usuario"}]})
+			this.setState({ ...this.context, "markers": [...this.state.markers, { "position": [this.context.coords.latitude, this.context.coords.longitude], "popup": "usuario" }] })
 			fetch(`http://localhost:3001/getStores/${this.context.coords.longitude}/${this.context.coords.latitude}/${this.context.selected}`)
 				.then(res => res.json())
 				.then(
@@ -48,11 +43,10 @@ export default class App extends Component {
 						});
 					},
 				)
-			}
+		}
 	}
 
 	removeMarker(id) {
-		// console.log(id);
 		let markers = Array.from(this.state.markers);
 		markers.splice(id, 1);
 		this.setState({ ...this.state, "markers": markers });
@@ -62,12 +56,12 @@ export default class App extends Component {
 		return this.state.markers.map((el, id) => {
 			let size = (id === this.state.selected ? 50 : 30);
 			return (
-				<Marker position={el.position} key={id} 
-				icon={L.icon({
-					"iconUrl": `images/landmark-${el.color ? el.color : "verde"}-20.svg`,
-					iconSize: [size, size], // size of the icon
-				})} 
-				onContextMenu={() => this.removeMarker(id)}>
+				<Marker position={el.position} key={id}
+					icon={L.icon({
+						"iconUrl": `images/landmark-${el.color ? el.color : "verde"}-20.svg`,
+						iconSize: [size, size], // size of the icon
+					})}
+					onContextMenu={() => this.removeMarker(id)}>
 					<Popup>{el.popup}</Popup>
 				</Marker>
 			);
@@ -87,33 +81,33 @@ export default class App extends Component {
 	render() {
 		return (
 			<>
-			<Map center={[40.416775, -3.703790]} zoom={15} maxZoom={19} zoomControl={false} onDblClick={this.generateMarker} ref={this.instantiateMap.bind(this)}>
-				<TileLayer
-					url='https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token=wmpmiE7gyJPKgHi1lGV8y5uY3jF26Xno7lfGHFLVsRXUkR68hm701leqj8Nr4eb4'
-					attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-				/>
-				{/* added ZoomControl component to change zoom position  */}
-				{/* <ZoomControl position='topright' /> */}
+				<Map center={[40.416775, -3.703790]} zoom={15} maxZoom={19} zoomControl={false} onDblClick={this.generateMarker} ref={this.instantiateMap.bind(this)}>
+					<TileLayer
+						url='https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token=wmpmiE7gyJPKgHi1lGV8y5uY3jF26Xno7lfGHFLVsRXUkR68hm701leqj8Nr4eb4'
+						attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+					/>
+					{/* added ZoomControl component to change zoom position  */}
+					{/* <ZoomControl position='topright' /> */}
 					{this.printMarker()}
 
+					<CategoryConsumer>
+
+						{(value) => {
+							return (
+								<>
+									{this.state.map && value.pointB && <Route map={this.state.map} pointA={this.state.pointA} pointB={value.pointB} />}
+								</>
+							)
+						}}
+
+					</CategoryConsumer>
+				</Map>
 				<CategoryConsumer>
-					
-					{(value) => {
-						return (
-						<>
-							{this.state.map && value.pointB && <Route map={this.state.map} pointA={this.state.pointA} pointB={value.pointB}/>}
-						</>
-						)
-					}}
-					
+					{(value) => <div className="hola" style={{ width: '100vw' }}><Footer /></div>}
 				</CategoryConsumer>
-			</Map>
-			<CategoryConsumer>
-					{(value) => <div className="hola" style={{width:'100vw'}}><Footer /></div>}	
-			</CategoryConsumer>
 			</>
-			
-			
+
+
 		);
 	}
 }

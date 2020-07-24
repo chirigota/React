@@ -6,12 +6,7 @@ import { CategoryProvider } from "./Contexts/categoryContext.js";
 import OnBoarding from './Components/onboarding/OnBoarding';
 import Profile from './Components/login/views/Profile';
 import Login from './Components/login/views/Login';
-// import Signup from './Components/login/views/SignUp';
-import Error from './Components/login/views/Error';
-// import Carrusel from './Components/Map/Carrusel';
-// import "react-responsive-carousel/lib/styles/carousel.min.css";
-// import Store from './Components/store/Store';
-import Points from './Components/login/views/Points';
+import Error from './Components/login/views/Error'; import Points from './Components/login/views/Points';
 import QR from './Components/login/views/QR';
 import { AuthContext } from "./Components/login/context/AuthContext";
 import Store from './Components/store/Store';
@@ -82,13 +77,6 @@ export default class App extends Component {
 					</Router>
 				</AuthContext>
 			</CategoryProvider>
-			// /* /* create a context for the map */ 
-
-			// 		// <Route exact path="/search">
-			// 		// 	<Header/>
-			// 		// 	<Map />
-			//  		// 	<Footer/>
-			// 		// </Route> */}
 		);
 	}
 }

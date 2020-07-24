@@ -6,7 +6,6 @@ import { withRouter } from "react-router";
 import * as firebase from "firebase";
 import firebaseConfig from "../Firebaseconfig";
 import { Auth } from "../context/AuthContext";
-// import Errors from '../../Errors'
 import './Log.css'
 import Rectangle from '../../onboarding/Rectangle'
 

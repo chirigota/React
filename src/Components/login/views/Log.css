@@ -137,7 +137,6 @@ text-align: center;
 .btnRegister{
     align-self: center;
     width: 72%;
-    /* text-align: center; */
     justify-content: center;
     text-align: -webkit-center;
     padding: 12px 19px;
