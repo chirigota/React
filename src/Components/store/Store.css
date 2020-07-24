@@ -108,7 +108,8 @@ margin-top:-12px;
     flex-direction: row;
     background-color: #00B3BD;
     margin-left: 10px;
-    margin-top: 10px;
+	margin-top: 10px;
+	z-index: 1;
 }
 .iconStoreArrowBack{
 	display: flex;

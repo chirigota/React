@@ -5,7 +5,7 @@ import categoryContext, { CategoryConsumer } from "../../Contexts/categoryContex
 import "./map.css";
 import Route from "../route.js";
 import Footer from './../Footer';
-import MapHeader from './MapHeader';
+// import MapHeader from './MapHeader';
 
 
 export default class App extends Component {
@@ -83,48 +83,55 @@ export default class App extends Component {
 	render() {
 		return (
 			<>
-			<div>
-				<CategoryConsumer>
-						<div ><a href="/" className="arrowBack">
-							<img className="iconArrowMap" src="images/arrow.png" alt="atrás"
-								style={{
-									width: '50 %', display: 'flex', flexDirection: 'row'
-								}}></img></a></div>
-						{(value) => <button onClick={() => value.redirectTo("/profile")} className="btnProfile"> <img id="profileLogo" src="images/perfil-32.svg" alt="profile-icon" /></button>}
-				</CategoryConsumer>
-				<MapHeader />
-				<Map center={[40.416775, -3.703790]} zoom={15} maxZoom={19} zoomControl={false} onDblClick={this.generateMarker} ref={this.instantiateMap.bind(this)}>
-					<TileLayer
-						url='https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token=wmpmiE7gyJPKgHi1lGV8y5uY3jF26Xno7lfGHFLVsRXUkR68hm701leqj8Nr4eb4'
-						attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-					/>
-					{/* added ZoomControl component to change zoom position  */}
-					{/* <ZoomControl position='topright' /> */}
-					{this.printMarker()}
-
-					<CategoryConsumer>
-
-						{(value) => {
-							if ((!this.props.renderRoute && value.selected === undefined) || (this.props.renderRoute && !value.selectedPlace) || !value.coords)
-								value.redirectTo("/")
-							console.log(value.coords, value.selectedPlace)
-							return (
-								<>
-									{this.props.renderRoute && <Route pointA={{ "lat": value.coords.latitude, "lon": value.coords.longitude }} pointB={{ "lat": value.selectedPlace.lat, "lon": value.selectedPlace.lng }} map={this.state.map} />}
-								</>
-							)
-						}}
-
-					</CategoryConsumer>
-				</Map>
-				{!this.props.renderRoute &&
+				<div>
 					<CategoryConsumer>
 						{(value) =>
-							<div className="hola" style={{ width: '100vw' }}>
-								<Footer />
-							</div>}
+							<div >
+								<a href="/" className="arrowBack">
+									<img className="iconArrowMap" src="images/arrow.png" alt="atrás"
+										style={{
+											width: '50 %', display: 'flex', flexDirection: 'row'
+										}}></img>
+								</a>
+								<button onClick={() => value.redirectTo("/profile")} className="btnProfile">
+									<img id="profileLogo" src="images/perfil-32.svg" alt="profile-icon" />
+								</button>
+							</div>
+						}
 					</CategoryConsumer>
-				}
+					{/* <MapHeader /> */}
+					<Map center={[40.416775, -3.703790]} zoom={15} maxZoom={19} zoomControl={false} onDblClick={this.generateMarker} ref={this.instantiateMap.bind(this)}>
+						<TileLayer
+							url='https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token=wmpmiE7gyJPKgHi1lGV8y5uY3jF26Xno7lfGHFLVsRXUkR68hm701leqj8Nr4eb4'
+							attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+						/>
+						{/* added ZoomControl component to change zoom position  */}
+						{/* <ZoomControl position='topright' /> */}
+						{this.printMarker()}
+
+						<CategoryConsumer>
+
+							{(value) => {
+								if ((!this.props.renderRoute && value.selected === undefined) || (this.props.renderRoute && !value.selectedPlace) || !value.coords)
+									value.redirectTo("/")
+								console.log(value.coords, value.selectedPlace)
+								return (
+									<>
+										{this.props.renderRoute && <Route pointA={{ "lat": value.coords.latitude, "lon": value.coords.longitude }} pointB={{ "lat": value.selectedPlace.lat, "lon": value.selectedPlace.lng }} map={this.state.map} />}
+									</>
+								)
+							}}
+
+						</CategoryConsumer>
+					</Map>
+					{!this.props.renderRoute &&
+						<CategoryConsumer>
+							{(value) =>
+								<div className="hola" style={{ width: '100vw' }}>
+									<Footer />
+								</div>}
+						</CategoryConsumer>
+					}
 				</div>
 			</>
 
