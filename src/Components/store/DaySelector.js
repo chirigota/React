@@ -7,7 +7,7 @@ class DaySelector extends Component {
 
 	render() {
 		return (
-			<select className="selectDay" onClick>
+			<select className="selectDay" value={this.props.value} onChange={this.props.select}>
 				<option value="monday">lunes</option>
 				<option value="tuesday">martes</option>
 				<option value="wednesday">miércoles</option>

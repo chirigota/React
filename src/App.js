@@ -10,6 +10,7 @@ import Error from './Components/login/views/Error'; import Points from './Compon
 import QR from './Components/login/views/QR';
 import { AuthContext } from "./Components/login/context/AuthContext";
 import Store from './Components/store/Store';
+import RouteContainer from "./Components/routeContainer/RouteContainer";
 
 export default class App extends Component {
 	constructor(props) {
@@ -18,7 +19,8 @@ export default class App extends Component {
 			"selected": undefined,
 			"redirectTo": undefined,
 			"pointB": undefined,
-			"coords": undefined
+			"coords": undefined,
+			"place": undefined
 		}
 
 		this.redirectTo = this.redirectTo.bind(this);
@@ -44,7 +46,9 @@ export default class App extends Component {
 				"selectStreet": (coords) => {
 					this.setState({ ...this.state, coords });
 					console.log(coords)
-				}, "selectCategory": (selected, redirectTo = undefined, pointB = []) => { this.setState({ ...this.state, selected, redirectTo, pointB }) }
+				}, "selectCategory": (selected, redirectTo = undefined, pointB = []) => { this.setState({ ...this.state, selected, redirectTo, pointB }) },
+				"selectPlace": (place, redirectTo = undefined) => { this.setState({ ...this.state, place, redirectTo }) },
+				"selectedPlace": this.state.place
 			}}>
 				<AuthContext>
 					<Router>
@@ -70,6 +74,7 @@ export default class App extends Component {
 							</Route>
 							<Route exact path="/" component={CategoryPicker} />
 							<Route exact path="/map" component={Container} />
+							<Route exact path="/route" component={RouteContainer} />
 							<Route path="*">
 								<Error />
 							</Route>
