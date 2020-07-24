@@ -26,7 +26,7 @@ async function handleFill(event, state, setState, props) {
 	}
 	console.log(value.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
 	try {
-		let data = await fetch(`http://localhost:3001/street/${value === props.defaultValue ? "" : value}`);
+		let data = await fetch(`https://appsportashop.herokuapp.com/street/${value === props.defaultValue ? "" : value}`);
 		data = await data.json()//.then(data => data.json()).then(data => setState({...state, data}));
 		setState({ ...state, value, data });
 	} catch (e) {
@@ -66,7 +66,7 @@ async function changeFocus(state, setState, newState, ref, props) {
 		clearTimeout(ref.changeFocus);
 		ref.changeFocus = undefined;
 	} else {
-		data = await (await fetch(`http://localhost:3001/street/${state.value === props.defaultValue ? "" : state.value}`)).json()//.then(data => data.json()).then(data => setState({ ...state, data }));
+		data = await (await fetch(`https://appspotashop.herokuapp.com/street/${state.value === props.defaultValue ? "" : state.value}`)).json()//.then(data => data.json()).then(data => setState({ ...state, data }));
 		ref.input.select();
 	}
 	setState({ ...state, "focused": newState, data });
