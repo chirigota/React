@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Container from "./Components/Container";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 import CategoryPicker from "./Components/selectCategory/SelectCategory.js";
 import { CategoryProvider } from "./Contexts/categoryContext.js";
 import OnBoarding from './Components/onboarding/OnBoarding';
 import Profile from './Components/login/views/Profile';
 import Login from './Components/login/views/Login';
-import Error from './Components/login/views/Error'; import Points from './Components/login/views/Points';
+import Error from './Components/login/views/Error';
+import Points from './Components/login/views/Points';
 import QR from './Components/login/views/QR';
 import { AuthContext } from "./Components/login/context/AuthContext";
 import Store from './Components/store/Store';
@@ -28,12 +29,12 @@ export default class App extends Component {
 
 
 	redirectTo(redirectTo) {
-		this.setState({ ...this.state, redirectTo });
+		this.setState({...this.state, redirectTo});
 	}
 
 	getRedirection() {
 		let redirectTo = this.state.redirectTo;
-		this.setState({ ...this.state, redirectTo: undefined })
+		this.setState({...this.state, redirectTo: undefined })
 		return <Redirect to={redirectTo} />
 	}
 

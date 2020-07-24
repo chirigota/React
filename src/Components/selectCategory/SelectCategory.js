@@ -4,7 +4,6 @@ import "./SelectCategory.css";
 import Select from "../select/select.js";
 import { CategoryConsumer } from "../../Contexts/categoryContext.js";
 import Rectangle2 from '../login/views/Rectangle2.js';
-import { Auth as AuthContext } from "../login/context/AuthContext";
 
 class SelectCategory extends Component {
     constructor(props) {
