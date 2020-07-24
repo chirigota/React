@@ -109,7 +109,7 @@ function Select(props) {
 			<label htmlFor={id}>{props.label}</label>
 			<input type={props.type ? props.type : "text"} onFocus={() => changeFocus(state, setState, true, ref, props)} onBlur={() => ref.changeFocus = setTimeout(() => changeFocus(state, setState, false, ref, props), 100)} placeholder={props.placeholder || "Select..."} aria-required={props.required === true} ref={(el) => ref.input = el} id={id} value={state.value} onChange={(e) => handleFill(e, state, setState, props)}></input>
 			<div className="searchIcon" ref={(el) => ref.arrow = el} onClick={() => handleArrow(state, setState, ref)}>
-				<img src="/IMG/lupaWhite.svg" alt="Imágen de una lupa" />
+				<img src="/IMG/lupawhite.svg" alt="Imágen de una lupa" />
 			</div>
 			{state.focused && <section className="scroll">
 				{printOptions(state, setState, props, ref)}

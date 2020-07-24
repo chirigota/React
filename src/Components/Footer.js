@@ -51,7 +51,7 @@ class Footer extends Component {
 						console.log("context que me parió", !this.state.places);
 						if (!this.state.askForPlaces && value.coords && value.selected !== undefined) {
 							this.setState({ ...this.state, askForPlaces: true })
-							fetch(`http://localhost:3001/getStores/${value.coords.latitude}/${value.coords.longitude}/${value.selected}`)
+							fetch(`https://appspotashop.herokuapp.com/getStores/${value.coords.latitude}/${value.coords.longitude}/${value.selected}`)
 								.then(res => res.json())
 								.then(places => {
 									places.map(place => {

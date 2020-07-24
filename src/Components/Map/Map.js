@@ -25,7 +25,7 @@ export default class App extends Component {
 		console.log("this.context", this.context)
 		if (this.context.coords) {
 			this.setState({ ...this.context, "markers": [...this.state.markers, { "position": [this.context.coords.latitude, this.context.coords.longitude], "popup": "usuario" }] })
-			fetch(`http://localhost:3001/getStores/${this.context.coords.latitude}/${this.context.coords.longitude}/${this.context.selected}`)
+			fetch(`https://appspotashop.herokuapp.com/getStores/${this.context.coords.latitude}/${this.context.coords.longitude}/${this.context.selected}`)
 				.then(res => res.json())
 				.then(
 					(places) => {
